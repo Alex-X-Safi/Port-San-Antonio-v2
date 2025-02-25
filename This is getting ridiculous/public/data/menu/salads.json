@@ -1,0 +1,94 @@
+[
+  {
+    "id": "seasonSalad",
+    "price": 7,
+    "image": "images/salad_season.jpg",
+    "category": "salads",
+    "translations": {
+      "en": {
+        "name": "Season Salad",
+        "ingredients": "Mixed greens, tomatoes, cucumbers, vinaigrette",
+        "health": "Calories: 180, Protein: 5g"
+      },
+      "es": {
+        "name": "Ensalada de Temporada",
+        "ingredients": "Verduras mixtas, tomates, pepinos, vinagreta",
+        "health": "Calorías: 180, Proteínas: 5g"
+      },
+      "ar": {
+        "name": "سلطة الموسم",
+        "ingredients": "خضار مشكلة، طماطم، خيار، خل",
+        "health": "السعرات الحرارية: 180، البروتين: 5غ"
+      }
+    }
+  },
+  {
+    "id": "greekSalad",
+    "price": 9,
+    "image": "images/salad_greek.jpg",
+    "category": "salads",
+    "translations": {
+      "en": {
+        "name": "Greek Salad",
+        "ingredients": "Lettuce, tomatoes, cucumbers, olives, feta cheese",
+        "health": "Calories: 220, Protein: 7g"
+      },
+      "es": {
+        "name": "Ensalada Griega",
+        "ingredients": "Lechuga, tomates, pepinos, aceitunas, queso feta",
+        "health": "Calorías: 220, Proteínas: 7g"
+      },
+      "ar": {
+        "name": "سلطة يونانية",
+        "ingredients": "خس، طماطم، خيار، زيتون، جبنة فيتا",
+        "health": "السعرات الحرارية: 220، البروتين: 7غ"
+      }
+    }
+  },
+  {
+    "id": "crabSalad",
+    "price": 10,
+    "image": "images/salad_crab.jpg",
+    "category": "salads",
+    "translations": {
+      "en": {
+        "name": "Crab Salad",
+        "ingredients": "Fresh crab meat, mixed greens, citrus dressing",
+        "health": "Calories: 250, Protein: 15g"
+      },
+      "es": {
+        "name": "Ensalada de Cangrejo",
+        "ingredients": "Carne de cangrejo fresco, verduras mixtas, aderezo cítrico",
+        "health": "Calorías: 250, Proteínas: 15g"
+      },
+      "ar": {
+        "name": "سلطة السلطعون",
+        "ingredients": "لحم السلطعون الطازج، خضار مشكلة، صلصة الحمضيات",
+        "health": "السعرات الحرارية: 250، البروتين: 15غ"
+      }
+    }
+  },
+  {
+    "id": "shrimpSalad",
+    "price": 12,
+    "image": "images/salad_shrimp.jpg",
+    "category": "salads",
+    "translations": {
+      "en": {
+        "name": "Shrimp Salad",
+        "ingredients": "Shrimp, avocado, lettuce, cherry tomatoes, vinaigrette",
+        "health": "Calories: 310, Protein: 25g"
+      },
+      "es": {
+        "name": "Ensalada de Camarones",
+        "ingredients": "Camarones, aguacate, lechuga, tomates cherry, vinagreta",
+        "health": "Calorías: 310, Proteínas: 25g"
+      },
+      "ar": {
+        "name": "سلطة الروبيان",
+        "ingredients": "روبيان، أفوكادو، خس، طماطم كرزية، خل",
+        "health": "السعرات الحرارية: 310، البروتين: 25غ"
+      }
+    }
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "id": "chickenSub",
+    "price": 8,
+    "image": "images/sandwich_chicken_sub.jpg",
+    "category": "sandwiches",
+    "translations": {
+      "en": {
+        "name": "Chicken Sub",
+        "ingredients": "Grilled chicken, lettuce, tomato, mayo, sub bread",
+        "health": "Calories: 450, Protein: 30g"
+      },
+      "es": {
+        "name": "Sub de Pollo",
+        "ingredients": "Pollo a la parrilla, lechuga, tomate, mayonesa, pan de sub",
+        "health": "Calorías: 450, Proteínas: 30g"
+      },
+      "ar": {
+        "name": "ساندويتش الدجاج",
+        "ingredients": "دجاج مشوي، خس، طماطم، مايونيز، خبز ساندويتش",
+        "health": "السعرات الحرارية: 450، البروتين: 30غ"
+      }
+    }
+  },
+  {
+    "id": "fajitaSub",
+    "price": 9,
+    "image": "images/sandwich_fajita_sub.jpg",
+    "category": "sandwiches",
+    "translations": {
+      "en": {
+        "name": "Fajita Sub",
+        "ingredients": "Grilled chicken, bell peppers, onions, fajita sauce, sub bread",
+        "health": "Calories: 470, Protein: 32g"
+      },
+      "es": {
+        "name": "Sub de Fajita",
+        "ingredients": "Pollo a la parrilla, pimientos, cebollas, salsa fajita, pan de sub",
+        "health": "Calorías: 470, Proteínas: 32g"
+      },
+      "ar": {
+        "name": "ساندويتش الفاهيتا",
+        "ingredients": "دجاج مشوي، فلفل حلو، بصل، صلصة فاهيتا، خبز ساندويتش",
+        "health": "السعرات الحرارية: 470، البروتين: 32غ"
+      }
+    }
+  },
+  {
+    "id": "tunaSandwich",
+    "price": 7,
+    "image": "images/sandwich_tuna_sandwich.jpg",
+    "category": "sandwiches",
+    "translations": {
+      "en": {
+        "name": "Tuna Sandwich",
+        "ingredients": "Tuna, mayo, lettuce, tomato, whole wheat bread",
+        "health": "Calories: 380, Protein: 28g"
+      },
+      "es": {
+        "name": "Sándwich de Atún",
+        "ingredients": "Atún, mayonesa, lechuga, tomate, pan integral",
+        "health": "Calorías: 380, Proteínas: 28g"
+      },
+      "ar": {
+        "name": "ساندويتش التونة",
+        "ingredients": "تونة، مايونيز، خس، طماطم، خبز القمح الكامل",
+        "health": "السعرات الحرارية: 380، البروتين: 28غ"
+      }
+    }
+  },
+  {
+    "id": "hotDog",
+    "price": 8,
+    "image": "images/sandwich_hot_dog.jpg",
+    "category": "sandwiches",
+    "translations": {
+      "en": {
+        "name": "Hot Dog",
+        "ingredients": "Beef sausage, bun, ketchup, mustard",
+        "health": "Calories: 400, Protein: 15g"
+      },
+      "es": {
+        "name": "Perrito Caliente",
+        "ingredients": "Salchicha de res, pan, ketchup, mostaza",
+        "health": "Calorías: 400, Proteínas: 15g"
+      },
+      "ar": {
+        "name": "هوت دوج",
+        "ingredients": "نقانق لحم البقر، خبز، كاتشب، خردل",
+        "health": "السعرات الحرارية: 400، البروتين: 15غ"
+      }
+    }
+  },
+  {
+    "id": "tawouk",
+    "price": 6,
+    "image": "images/sandwich_tawouk.jpg",
+    "category": "sandwiches",
+    "translations": {
+      "en": {
+        "name": "Tawouk",
+        "ingredients": "Marinated chicken, garlic sauce, pita bread",
+        "health": "Calories: 420, Protein: 27g"
+      },
+      "es": {
+        "name": "Tawouk",
+        "ingredients": "Pollo marinado, salsa de ajo, pan de pita",
+        "health": "Calorías: 420, Proteínas: 27g"
+      },
+      "ar": {
+        "name": "طاووق",
+        "ingredients": "دجاج متبل، صلصة الثوم، خبز البيتا",
+        "health": "السعرات الحرارية: 420، البروتين: 27غ"
+      }
+    }
+  }
+]
