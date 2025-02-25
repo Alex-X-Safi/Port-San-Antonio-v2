@@ -3,26 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
-  
-  <!-- Include Auth0 Lock for authentication -->
-  <script src="https://cdn.auth0.com/js/lock/11.30/lock.min.js"></script>
-  
-  <!-- Set manual initialization flag for Netlify CMS -->
+  <title>Admin Panel</title>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.19/auth0-spa-js.production.js"></script>
   <script>
     window.CMS_MANUAL_INIT = true;
   </script>
-
-  <!-- Include Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  
-  <!-- Admin CSS -->
   <link rel="stylesheet" href="styles-admin.css">
 </head>
 <body>
   <noscript>Please enable JavaScript to view the CMS.</noscript>
-
-  <!-- Load custom admin authentication script -->
   <script src="script-admin.js"></script>
 </body>
 </html>
