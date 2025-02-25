@@ -1,0 +1,117 @@
+[
+  {
+    "id": "hamburgerPlatter",
+    "price": 14,
+    "image": "images/platter_hamburger.jpg",
+    "category": "platters",
+    "translations": {
+      "en": {
+        "name": "Hamburger Platter",
+        "ingredients": "Variety of hamburgers, fries, salad",
+        "health": "Calories: 800"
+      },
+      "es": {
+        "name": "Plato de Hamburguesa",
+        "ingredients": "Variedad de hamburguesas, papas fritas, ensalada",
+        "health": "Calorías: 800"
+      },
+      "ar": {
+        "name": "طبق البرجر",
+        "ingredients": "مجموعة متنوعة من البرجر، بطاطس مقلية، سلطة",
+        "health": "السعرات الحرارية: 800"
+      }
+    }
+  },
+  {
+    "id": "cheeseburgerPlatter",
+    "price": 15,
+    "image": "images/platter_cheeseburger.jpg",
+    "category": "platters",
+    "translations": {
+      "en": {
+        "name": "Cheeseburger Platter",
+        "ingredients": "Variety of cheeseburgers, fries, salad",
+        "health": "Calories: 850"
+      },
+      "es": {
+        "name": "Plato de Hamburguesa con Queso",
+        "ingredients": "Variedad de hamburguesas con queso, papas fritas, ensalada",
+        "health": "Calorías: 850"
+      },
+      "ar": {
+        "name": "طبق البرجر بالجبن",
+        "ingredients": "مجموعة متنوعة من البرجر بالجبن، بطاطس مقلية، سلطة",
+        "health": "السعرات الحرارية: 850"
+      }
+    }
+  },
+  {
+    "id": "chickenBurgerPlatter",
+    "price": 12,
+    "image": "images/platter_chicken_burger.jpg",
+    "category": "platters",
+    "translations": {
+      "en": {
+        "name": "Chicken Burger Platter",
+        "ingredients": "Variety of chicken burgers, fries, salad",
+        "health": "Calories: 780"
+      },
+      "es": {
+        "name": "Plato de Hamburguesa de Pollo",
+        "ingredients": "Variedad de hamburguesas de pollo, papas fritas, ensalada",
+        "health": "Calorías: 780"
+      },
+      "ar": {
+        "name": "طبق برجر الدجاج",
+        "ingredients": "مجموعة متنوعة من برجر الدجاج، بطاطس مقلية، سلطة",
+        "health": "السعرات الحرارية: 780"
+      }
+    }
+  },
+  {
+    "id": "fishBurgerPlatter",
+    "price": 14,
+    "image": "images/platter_fish_burger.jpg",
+    "category": "platters",
+    "translations": {
+      "en": {
+        "name": "Fish Burger Platter",
+        "ingredients": "Variety of fish burgers, fries, salad",
+        "health": "Calories: 820"
+      },
+      "es": {
+        "name": "Plato de Hamburguesa de Pescado",
+        "ingredients": "Variedad de hamburguesas de pescado, papas fritas, ensalada",
+        "health": "Calorías: 820"
+      },
+      "ar": {
+        "name": "طبق برجر السمك",
+        "ingredients": "مجموعة متنوعة من برجر السمك، بطاطس مقلية، سلطة",
+        "health": "السعرات الحرارية: 820"
+      }
+    }
+  },
+  {
+    "id": "tawoukPlatter",
+    "price": 12,
+    "image": "images/platter_tawouk.jpg",
+    "category": "platters",
+    "translations": {
+      "en": {
+        "name": "Tawouk Platter",
+        "ingredients": "Variety of tawouk dishes, fries, salad",
+        "health": "Calories: 790"
+      },
+      "es": {
+        "name": "Plato de Tawouk",
+        "ingredients": "Variedad de platos de tawouk, papas fritas, ensalada",
+        "health": "Calorías: 790"
+      },
+      "ar": {
+        "name": "طبق الطاووق",
+        "ingredients": "مجموعة متنوعة من أطباق الطاووق، بطاطس مقلية، سلطة",
+        "health": "السعرات الحرارية: 790"
+      }
+    }
+  }
+]

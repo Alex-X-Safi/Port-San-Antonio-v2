@@ -1,0 +1,140 @@
+[
+  {
+    "id": "mineralWaterLarge",
+    "price": 3,
+    "image": "images/drink_mineral_large.jpg",
+    "category": "drinks",
+    "translations": {
+      "en": {
+        "name": "Mineral Water (Large)",
+        "ingredients": "Fresh mineral water",
+        "health": "Hydration: 100%"
+      },
+      "es": {
+        "name": "Agua Mineral (Grande)",
+        "ingredients": "Agua mineral fresca",
+        "health": "Hidratación: 100%"
+      },
+      "ar": {
+        "name": "مياه معدنية (كبير)",
+        "ingredients": "مياه معدنية طازجة",
+        "health": "الترطيب: 100%"
+      }
+    }
+  },
+  {
+    "id": "mineralWaterSmall",
+    "price": 1,
+    "image": "images/drink_mineral_small.jpg",
+    "category": "drinks",
+    "translations": {
+      "en": {
+        "name": "Mineral Water (Small)",
+        "ingredients": "Fresh mineral water",
+        "health": "Hydration: 100%"
+      },
+      "es": {
+        "name": "Agua Mineral (Pequeña)",
+        "ingredients": "Agua mineral fresca",
+        "health": "Hidratación: 100%"
+      },
+      "ar": {
+        "name": "مياه معدنية (صغير)",
+        "ingredients": "مياه معدنية طازجة",
+        "health": "الترطيب: 100%"
+      }
+    }
+  },
+  {
+    "id": "perrier",
+    "price": 4,
+    "image": "images/drink_perrier.jpg",
+    "category": "drinks",
+    "translations": {
+      "en": {
+        "name": "Perrier",
+        "ingredients": "Sparkling water",
+        "health": "Hydration: 100%"
+      },
+      "es": {
+        "name": "Perrier",
+        "ingredients": "Agua con gas",
+        "health": "Hidratación: 100%"
+      },
+      "ar": {
+        "name": "بيرييه",
+        "ingredients": "مياه فوارة",
+        "health": "الترطيب: 100%"
+      }
+    }
+  },
+  {
+    "id": "softDrinks",
+    "price": 3,
+    "image": "images/drink_soft_drink.jpg",
+    "category": "drinks",
+    "translations": {
+      "en": {
+        "name": "Soft Drinks",
+        "ingredients": "Carbonated beverage",
+        "health": "Sugar: High"
+      },
+      "es": {
+        "name": "Refrescos",
+        "ingredients": "Bebida carbonatada",
+        "health": "Azúcar: Alto"
+      },
+      "ar": {
+        "name": "مشروبات غازية",
+        "ingredients": "مشروب غازي",
+        "health": "السكر: مرتفع"
+      }
+    }
+  },
+  {
+    "id": "lemonade",
+    "price": 4,
+    "image": "images/drink_lemonade.jpg",
+    "category": "drinks",
+    "translations": {
+      "en": {
+        "name": "Lemonade",
+        "ingredients": "Lemon juice, water, sugar",
+        "health": "Calories: 120, Sugar: 25g"
+      },
+      "es": {
+        "name": "Limonada",
+        "ingredients": "Jugo de limón, agua, azúcar",
+        "health": "Calorías: 120, Azúcar: 25g"
+      },
+      "ar": {
+        "name": "ليمونادة",
+        "ingredients": "عصير الليمون، ماء، سكر",
+        "health": "السعرات الحرارية: 120، السكر: 25غ"
+      }
+    }
+  },
+  {
+    "id": "orangeJuice",
+    "price": 5,
+    "image": "images/drink_orange_juice.jpg",
+    "category": "drinks",
+    "translations": {
+      "en": {
+        "name": "Orange Juice",
+        "ingredients": "Freshly squeezed oranges",
+        "health": "Calories: 150, Vitamin C: 90%"
+      },
+      "es": {
+        "name": "Jugo de Naranja",
+        "ingredients": "Naranjas recién exprimidas",
+        "health": "Calorías: 150, Vitamina C: 90%"
+      },
+      "ar": {
+        "name": "عصير البرتقال",
+        "ingredients": "برتقال طازج",
+        "health": "السعرات الحرارية: 150، فيتامين سي: 90%"
+      }
+    }
+  }
+]
