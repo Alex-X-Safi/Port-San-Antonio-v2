@@ -594,3 +594,22 @@ nav ul li button,
     font-size: 2rem;  /* A bit larger on mobile */
   }
 }
+/* Arrow Toggle Button */
+.nav-toggle {
+  position: fixed; /* Always visible */
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1200;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+.nav-toggle:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
