@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (roles.includes('admin')) {
                 initCMS();
             } else {
-                alert('Access Denied: Admins only.');
+                showError('Access Denied: Admins only.');
                 window.location.href = '/';
             }
         } else {
@@ -124,3 +124,9 @@ document.addEventListener('DOMContentLoaded', () => {
     netlifyIdentity.init();
     updateUI();
 });
+
+function showError(message) {
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.textContent = message;
+    errorMessage.classList.remove('hidden');
+}
