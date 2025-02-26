@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         label: 'Menu Items',
                         folder: 'data/menu',
                         create: true,
+                        delete: true,
                         slug: '{{slug}}',
                         identifier_field: 'id',
                         fields: [
