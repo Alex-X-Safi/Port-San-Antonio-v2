@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // ------------------------------
   // Netlify Identity Initialization
   const updateUI = () => {
     const user = netlifyIdentity.currentUser();
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   netlifyIdentity.init();
 
+  // ------------------------------
   // DOM Elements
   const loginBtn = document.getElementById("login");
   const logoutBtn = document.getElementById("logout");
@@ -34,12 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let lastTap = 0;
   let touchStartX = null;
 
-  // Ensure Elements Exist Before Manipulating
+  // Ensure required elements exist.
   if (!loginBtn || !logoutBtn || !toggleButton || !scrollToTopBtn || !languageSwitcher || !exploreBtn || !menuSection) {
     console.error("One or more DOM elements not found.");
     return;
   }
 
+  // ------------------------------
   // Dark Mode
   if (localStorage.getItem("darkMode") === "enabled") {
     body.classList.add("dark-mode");
@@ -49,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("darkMode", body.classList.contains("dark-mode") ? "enabled" : "disabled");
   });
 
+  // ------------------------------
   // Menu Loading
   async function loadMenu() {
     try {
@@ -98,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ------------------------------
   // Popup Handling
   function openPopup(item) {
     const itemId = item.dataset.id;
@@ -144,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
     lastTap = currentTime;
   }
 
-  // Popup Navigation
+  // Popup Navigation (previous/next)
   document.getElementById("popupPrev").addEventListener("click", () => navigatePopup(-1));
   document.getElementById("popupNext").addEventListener("click", () => navigatePopup(1));
   function navigatePopup(direction) {
@@ -155,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
     openPopup(items[newIndex]);
   }
 
+  // ------------------------------
   // Scroll Management
   window.addEventListener("scroll", () => {
     scrollToTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
@@ -163,7 +169,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  // Language Management and i18next Initialization
+  // ------------------------------
+  // Language Management & i18next Initialization
   languageSwitcher.addEventListener("change", function () {
     const selectedLanguage = this.value;
     i18next.changeLanguage(selectedLanguage, function (err, t) {
@@ -196,6 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ------------------------------
   // Admin Access
   document.querySelector('a[href="#admin"]').addEventListener("click", function (e) {
     e.preventDefault();
@@ -238,19 +246,97 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // === Universal Sorting Feature ===
+  // ------------------------------
+  // Individual Category Sorting Overlays (unchanged)
+  document.querySelectorAll(".filter-btn").forEach(button => {
+    button.addEventListener("click", function () {
+      let overlay = this.closest(".menu-category").querySelector(".sort-overlay");
+      if (overlay) {
+        overlay.classList.remove("hidden");
+      }
+    });
+  });
+  document.querySelectorAll(".close-sort").forEach(button => {
+    button.addEventListener("click", function () {
+      let overlay = this.closest(".sort-overlay");
+      if (overlay) {
+        overlay.classList.add("hidden");
+      }
+    });
+  });
+  document.querySelectorAll(".sort-btn").forEach(button => {
+    button.addEventListener("click", function () {
+      const category = this.getAttribute("data-category");
+      const sortType = this.getAttribute("data-sort");
+      const container = document.querySelector(`.${category}`);
+      const items = Array.from(container.children);
+      // Simple toggle: if already sorted by this type, toggle order.
+      let currentOrder = button.getAttribute("data-order") || "asc";
+      currentOrder = currentOrder === "asc" ? "desc" : "asc";
+      button.setAttribute("data-order", currentOrder);
+      items.sort((a, b) => {
+        let valueA, valueB;
+        if (sortType === "price") {
+          valueA = parseFloat(a.getAttribute("data-price"));
+          valueB = parseFloat(b.getAttribute("data-price"));
+        } else {
+          valueA = a.getAttribute("data-name").toLowerCase();
+          valueB = b.getAttribute("data-name").toLowerCase();
+        }
+        if (valueA > valueB) return currentOrder === "asc" ? 1 : -1;
+        if (valueA < valueB) return currentOrder === "asc" ? -1 : 1;
+        return 0;
+      });
+      container.innerHTML = "";
+      items.forEach(item => container.appendChild(item));
+      // Close overlay.
+      let overlay = container.closest(".menu-category").querySelector(".sort-overlay");
+      if (overlay) {
+        overlay.classList.add("hidden");
+      }
+    });
+  });
+
+  // ------------------------------
+  // Universal Sorting Overlay (New Feature)
+  // Create the universal sort overlay element and append it to body if not already present.
+  let universalOverlay = document.querySelector(".universal-sort-overlay");
+  if (!universalOverlay) {
+    universalOverlay = document.createElement("div");
+    universalOverlay.className = "universal-sort-overlay hidden"; // You can add CSS similar to .sort-overlay
+    universalOverlay.innerHTML = `
+      <div class="sort-menu">
+        <h4>Sort All Categories</h4>
+        <button class="universal-sort-option" data-sort="price">Sort by Price</button>
+        <button class="universal-sort-option" data-sort="name">Sort Alphabetically</button>
+        <button class="universal-sort-close">Close</button>
+      </div>
+    `;
+    document.body.appendChild(universalOverlay);
+  }
+
+  // Global universal sort state
+  let universalSortState = { type: null, order: "asc" };
+
   const universalSortBtn = document.querySelector(".universal-sort-btn");
   if (universalSortBtn) {
     universalSortBtn.addEventListener("click", function () {
-      const sortType = prompt("Enter sort type: 'price' or 'name'");
-      if (!sortType || (sortType !== "price" && sortType !== "name")) {
-        alert("Invalid sort type");
-        return;
-      }
-      const order = prompt("Enter sort order: 'asc' or 'desc'");
-      if (!order || (order !== "asc" && order !== "desc")) {
-        alert("Invalid sort order");
-        return;
+      universalOverlay.classList.remove("hidden");
+    });
+  } else {
+    console.error("Universal sort button not found.");
+  }
+
+  // Handle universal sort option clicks
+  universalOverlay.querySelectorAll(".universal-sort-option").forEach(option => {
+    option.addEventListener("click", function () {
+      const sortType = this.getAttribute("data-sort");
+      if (universalSortState.type === sortType) {
+        // Toggle order if same sort type selected.
+        universalSortState.order = universalSortState.order === "asc" ? "desc" : "asc";
+      } else {
+        universalSortState.type = sortType;
+        universalSortState.order = "asc";
       }
       document.querySelectorAll(".menu-items").forEach(container => {
         const items = Array.from(container.children);
@@ -263,19 +349,22 @@ document.addEventListener("DOMContentLoaded", function () {
             valueA = a.getAttribute("data-name").toLowerCase();
             valueB = b.getAttribute("data-name").toLowerCase();
           }
-          if (valueA > valueB) return order === "asc" ? 1 : -1;
-          if (valueA < valueB) return order === "asc" ? -1 : 1;
+          if (valueA > valueB) return universalSortState.order === "asc" ? 1 : -1;
+          if (valueA < valueB) return universalSortState.order === "asc" ? -1 : 1;
           return 0;
         });
         container.innerHTML = "";
         items.forEach(item => container.appendChild(item));
       });
+      universalOverlay.classList.add("hidden");
     });
-  } else {
-    console.error("Universal sort button not found.");
-  }
+  });
+  universalOverlay.querySelector(".universal-sort-close").addEventListener("click", function () {
+    universalOverlay.classList.add("hidden");
+  });
 
-  // === Fix Filter Functionality ===
+  // ------------------------------
+  // Filtering Functionality
   const filterSelect = document.getElementById("filter");
   if (filterSelect) {
     filterSelect.addEventListener("change", function () {
@@ -296,6 +385,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Filter select element not found.");
   }
 
+  // ------------------------------
   // Popup and Long Press Handling for dynamically loaded items
   document.querySelectorAll(".menu-item").forEach(item => {
     item.addEventListener("mousedown", function () {
@@ -355,6 +445,7 @@ document.addEventListener("DOMContentLoaded", function () {
     touchStartX = null;
   });
 
+  // ------------------------------
   // Handle Form Submission in the Admin Dashboard
   const adminForm = document.getElementById("adminForm");
   if (adminForm) {
@@ -414,6 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Initial Load
+  // ------------------------------
+  // Initial Load of Menu Items
   loadMenu();
 });
