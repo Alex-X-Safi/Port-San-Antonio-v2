@@ -548,26 +548,31 @@ nav ul li a:hover {
 .universal-sort-overlay.hidden {
   display: none;
 }
-/* Navigation Bar Modifications */
+/* Navigation Modifications */
 
 /* Hide the login button */
 #login {
   display: none;
 }
 
-/* Increase size of the logo */
+/* Adjust the logo size */
 .logo {
-  font-size: 2rem; /* Adjust this value to make it as big as you want */
+  font-size: 1.8rem;  /* Moderately larger */
   font-weight: bold;
 }
 
-/* Increase size of nav links and buttons */
-nav ul li a,
+/* Increase nav link size */
+nav ul li a {
+  font-size: 1.1rem;   /* Slightly larger than the default */
+  padding: 0.4rem 0.8rem; /* Increased padding for a bigger clickable area */
+}
+
+/* Increase size for additional nav elements (buttons and select) */
 nav ul li button,
 #darkModeToggle,
 #languageSwitcher {
-  font-size: 1.2rem;  /* Larger text for better visibility */
-  padding: 0.5rem 1rem; /* Bigger clickable area */
+  font-size: 1.1rem;
+  padding: 0.4rem 0.8rem;
 }
 
 /* Responsive adjustments for mobile devices */
@@ -575,6 +580,7 @@ nav ul li button,
   nav {
     flex-direction: column;
     align-items: center;
+    padding: 1rem 2%;
   }
   nav ul {
     flex-direction: column;
@@ -585,7 +591,6 @@ nav ul li button,
     margin: 0.5rem 0;
   }
   .logo {
-    font-size: 2.5rem; /* Even larger on mobile if desired */
+    font-size: 2rem;  /* A bit larger on mobile */
   }
 }
-
