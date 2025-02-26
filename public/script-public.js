@@ -162,20 +162,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Scroll Management
   window.addEventListener("scroll", () => {
-    scrollToTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    if (scrollToTopBtn) {
+      scrollToTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    }
   });
-  scrollToTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
   // Language Management and i18next Initialization
-  languageSwitcher.addEventListener("change", function () {
-    const selectedLanguage = this.value;
-    i18next.changeLanguage(selectedLanguage, function (err, t) {
-      if (err) return console.error(err);
-      updateContent();
+  if (languageSwitcher) {
+    languageSwitcher.addEventListener("change", function () {
+      const selectedLanguage = this.value;
+      i18next.changeLanguage(selectedLanguage, function (err, t) {
+        if (err) return console.error(err);
+        updateContent();
+      });
     });
-  });
+  }
 
   i18next
     .use(i18nextHttpBackend)
@@ -206,25 +212,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Admin Access
-  document.querySelector('a[href="#admin"]').addEventListener("click", function (e) {
-    e.preventDefault();
-    if (typeof netlifyIdentity === "undefined") {
-      console.error("Netlify Identity is not defined. Please include the Netlify Identity widget script.");
-      return;
-    }
-    const user = netlifyIdentity.currentUser();
-    if (user && user.app_metadata.roles.includes("admin")) {
-      window.location.href = "/admin";
-    } else {
-      netlifyIdentity.open("login");
-      netlifyIdentity.on("login", user => {
-        if (user.app_metadata.roles.includes("admin")) {
-          window.location.href = "/admin";
-        } else {
-          alert(i18next.t("accessDenied"));
-        }
-      });
-    }
+  document.querySelectorAll('a[href="#admin"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (typeof netlifyIdentity === "undefined") {
+        console.error("Netlify Identity is not defined. Please include the Netlify Identity widget script.");
+        return;
+      }
+      const user = netlifyIdentity.currentUser();
+      if (user && user.app_metadata.roles.includes("admin")) {
+        window.location.href = "/admin";
+      } else {
+        netlifyIdentity.open("login");
+        netlifyIdentity.on("login", user => {
+          if (user.app_metadata.roles.includes("admin")) {
+            window.location.href = "/admin";
+          } else {
+            alert(i18next.t("accessDenied"));
+          }
+        });
+      }
+    });
   });
 
   // Smooth scroll for navigation links
@@ -381,18 +389,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Handle Form Submission in the Admin Dashboard
   const adminForm = document.getElementById("adminForm");
-  adminForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const price = document.getElementById("price").value;
-    const category = document.getElementById("category").value;
-    const image = document.getElementById("image").value;
-    const ingredients = document.getElementById("ingredients").value;
-    const health = document.getElementById("health").value;
-    const newItem = { name, price, category, image, ingredients, health };
-    addItem(newItem);
-    adminForm.reset();
-  });
+  if (adminForm) {
+    adminForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const price = document.getElementById("price").value;
+      const category = document.getElementById("category").value;
+      const image = document.getElementById("image").value;
+      const ingredients = document.getElementById("ingredients").value;
+      const health = document.getElementById("health").value;
+      const newItem = { name, price, category, image, ingredients, health };
+      addItem(newItem);
+      adminForm.reset();
+    });
+  }
 
   function addItem(item) {
     const container = document.querySelector(`.${item.category}`);
