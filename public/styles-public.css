@@ -548,3 +548,44 @@ nav ul li a:hover {
 .universal-sort-overlay.hidden {
   display: none;
 }
+/* Navigation Bar Modifications */
+
+/* Hide the login button */
+#login {
+  display: none;
+}
+
+/* Increase size of the logo */
+.logo {
+  font-size: 2rem; /* Adjust this value to make it as big as you want */
+  font-weight: bold;
+}
+
+/* Increase size of nav links and buttons */
+nav ul li a,
+nav ul li button,
+#darkModeToggle,
+#languageSwitcher {
+  font-size: 1.2rem;  /* Larger text for better visibility */
+  padding: 0.5rem 1rem; /* Bigger clickable area */
+}
+
+/* Responsive adjustments for mobile devices */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  nav ul li {
+    margin: 0.5rem 0;
+  }
+  .logo {
+    font-size: 2.5rem; /* Even larger on mobile if desired */
+  }
+}
+
