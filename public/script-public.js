@@ -509,13 +509,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 document.getElementById('navToggle').addEventListener('click', function() {
   const header = document.querySelector('header');
-  // Check the computed style of header to see if it's visible
+  // Check if the header is currently hidden
   if (getComputedStyle(header).display === 'none') {
     header.style.display = 'block';
-    this.innerHTML = '&#x25B2;'; // Up arrow when nav is visible (click to hide)
+    this.innerHTML = '&#x25B2;'; // Up arrow: header is visible, click to hide
   } else {
     header.style.display = 'none';
-    this.innerHTML = '&#x25BC;'; // Down arrow when nav is hidden (click to show)
+    this.innerHTML = '&#x25BC;'; // Down arrow: header is hidden, click to show
   }
 });
 
