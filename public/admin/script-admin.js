@@ -1,13 +1,13 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    const updateUI = async () => {
+document.addEventListener('DOMContentLoaded', () => {
+    const updateUI = () => {
         const user = netlifyIdentity.currentUser();
         if (user) {
             const roles = user.app_metadata && user.app_metadata.roles ? user.app_metadata.roles : [];
-            if (roles.includes("admin")) {
+            if (roles.includes('admin')) {
                 initCMS();
             } else {
-                alert("Access Denied: Admins only.");
-                window.location.href = "/";
+                alert('Access Denied: Admins only.');
+                window.location.href = '/';
             }
         } else {
             netlifyIdentity.open();
@@ -18,44 +18,97 @@ document.addEventListener("DOMContentLoaded", async () => {
         CMS.init({
             config: {
                 backend: {
-                    name: "git-gateway",
-                    branch: "main"
+                    name: 'git-gateway',
+                    branch: 'main',
+                    commit_messages: {
+                        create: 'Create {{collection}} “{{slug}}”',
+                        update: 'Update {{collection}} “{{slug}}”',
+                        delete: 'Delete {{collection}} “{{slug}}”',
+                        uploadMedia: 'Upload “{{path}}”',
+                        deleteMedia: 'Delete “{{path}}”'
+                    }
                 },
-                media_folder: "public/images",
-                public_folder: "/images",
+                load_config_file: false,
+                media_folder: 'public/Images',
+                public_folder: '/Images',
                 collections: [
                     {
-                        name: "menu",
-                        label: "Menu Items",
-                        folder: "data/menu",
+                        name: 'menu',
+                        label: 'Menu Items',
+                        folder: 'data/menu',
                         create: true,
-                        slug: "{{slug}}",
-                        identifier_field: "id",
+                        slug: '{{slug}}',
+                        identifier_field: 'id',
                         fields: [
-                            { label: "ID", name: "id", widget: "string" },
-                            { label: "Price", name: "price", widget: "number" },
-                            { label: "Image", name: "image", widget: "image" },
-                            { label: "Category", name: "category", widget: "select", options: ["sandwiches", "salads", "main-dishes", "drinks", "platters", "alcoholic"] },
                             {
-                                label: "Translations",
-                                name: "translations",
-                                widget: "object",
+                                label: 'ID',
+                                name: 'id',
+                                widget: 'string',
+                                pattern: ['^[a-z0-9-]+$', 'Lowercase letters, numbers, and dashes only']
+                            },
+                            {
+                                label: 'Price',
+                                name: 'price',
+                                widget: 'number',
+                                value_type: 'float',
+                                min: 0,
+                                step: 0.01
+                            },
+                            {
+                                label: 'Image',
+                                name: 'image',
+                                widget: 'image',
+                                allow_multiple: false,
+                                choose_url: false
+                            },
+                            {
+                                label: 'Category',
+                                name: 'category',
+                                widget: 'select',
+                                options: [
+                                    { label: 'Sandwiches', value: 'sandwiches' },
+                                    { label: 'Salads', value: 'salads' },
+                                    { label: 'Main Dishes', value: 'main-dishes' },
+                                    { label: 'Drinks', value: 'drinks' },
+                                    { label: 'Platters', value: 'platters' },
+                                    { label: 'Alcoholic', value: 'alcoholic' }
+                                ]
+                            },
+                            {
+                                label: 'Translations',
+                                name: 'translations',
+                                widget: 'object',
                                 fields: [
-                                    { label: "English", name: "en", widget: "object", fields: [
-                                        { label: "Name", name: "name", widget: "string" },
-                                        { label: "Ingredients", name: "ingredients", widget: "text" },
-                                        { label: "Health Info", name: "health", widget: "text" }
-                                    ]},
-                                    { label: "Spanish", name: "es", widget: "object", fields: [
-                                        { label: "Name", name: "name", widget: "string" },
-                                        { label: "Ingredients", name: "ingredients", widget: "text" },
-                                        { label: "Health Info", name: "health", widget: "text" }
-                                    ]},
-                                    { label: "Arabic", name: "ar", widget: "object", fields: [
-                                        { label: "Name", name: "name", widget: "string" },
-                                        { label: "Ingredients", name: "ingredients", widget: "text" },
-                                        { label: "Health Info", name: "health", widget: "text" }
-                                    ]}
+                                    {
+                                        label: 'English',
+                                        name: 'en',
+                                        widget: 'object',
+                                        fields: [
+                                            { label: 'Name', name: 'name', widget: 'string' },
+                                            { label: 'Ingredients', name: 'ingredients', widget: 'text' },
+                                            { label: 'Health Info', name: 'health', widget: 'text' }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Spanish',
+                                        name: 'es',
+                                        widget: 'object',
+                                        fields: [
+                                            { label: 'Name', name: 'name', widget: 'string' },
+                                            { label: 'Ingredients', name: 'ingredients', widget: 'text' },
+                                            { label: 'Health Info', name: 'health', widget: 'text' }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Arabic',
+                                        name: 'ar',
+                                        widget: 'object',
+                                        fields: [
+                                            { label: 'Name', name: 'name', widget: 'string' },
+                                            { label: 'Ingredients', name: 'ingredients', widget: 'text' },
+                                            { label: 'Health Info', name: 'health', widget: 'text' }
+                                        ]
+                                    }
                                 ]
                             }
                         ]
@@ -65,8 +118,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     };
 
-    netlifyIdentity.on("login", updateUI);
-    netlifyIdentity.on("logout", () => window.location.href = "/");
+    netlifyIdentity.on('login', updateUI);
+    netlifyIdentity.on('logout', () => window.location.href = '/');
     netlifyIdentity.init();
     updateUI();
 });
