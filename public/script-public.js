@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let lastTap = 0;
   let touchStartX = null;
 
-  // Ensure required elements exist.
   if (!loginBtn || !logoutBtn || !toggleButton || !scrollToTopBtn || !languageSwitcher || !exploreBtn || !menuSection) {
     console.error("One or more DOM elements not found.");
     return;
@@ -149,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
     lastTap = currentTime;
   }
 
-  // Popup Navigation (previous/next)
+  // Popup Navigation
   document.getElementById("popupPrev").addEventListener("click", () => navigatePopup(-1));
   document.getElementById("popupNext").addEventListener("click", () => navigatePopup(1));
   function navigatePopup(direction) {
@@ -226,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // ------------------------------
   // Smooth scroll for navigation links
   document.querySelectorAll("nav ul li a").forEach(anchor => {
     anchor.addEventListener("click", function (event) {
@@ -270,10 +270,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const sortType = this.getAttribute("data-sort");
       const container = document.querySelector(`.${category}`);
       const items = Array.from(container.children);
-      // Simple toggle: if already sorted by this type, toggle order.
-      let currentOrder = button.getAttribute("data-order") || "asc";
+      let currentOrder = this.getAttribute("data-order") || "asc";
       currentOrder = currentOrder === "asc" ? "desc" : "asc";
-      button.setAttribute("data-order", currentOrder);
+      this.setAttribute("data-order", currentOrder);
       items.sort((a, b) => {
         let valueA, valueB;
         if (sortType === "price") {
@@ -289,7 +288,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       container.innerHTML = "";
       items.forEach(item => container.appendChild(item));
-      // Close overlay.
       let overlay = container.closest(".menu-category").querySelector(".sort-overlay");
       if (overlay) {
         overlay.classList.add("hidden");
@@ -299,11 +297,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ------------------------------
   // Universal Sorting Overlay (New Feature)
-  // Create the universal sort overlay element and append it to body if not already present.
+  // Create the overlay only if it doesn't already exist.
   let universalOverlay = document.querySelector(".universal-sort-overlay");
   if (!universalOverlay) {
     universalOverlay = document.createElement("div");
-    universalOverlay.className = "universal-sort-overlay hidden"; // You can add CSS similar to .sort-overlay
+    universalOverlay.className = "universal-sort-overlay hidden"; // hidden by default
     universalOverlay.innerHTML = `
       <div class="sort-menu">
         <h4>Sort All Categories</h4>
@@ -314,7 +312,6 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     document.body.appendChild(universalOverlay);
   }
-
   // Global universal sort state
   let universalSortState = { type: null, order: "asc" };
 
@@ -326,13 +323,11 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.error("Universal sort button not found.");
   }
-
-  // Handle universal sort option clicks
+  // Universal sort option click
   universalOverlay.querySelectorAll(".universal-sort-option").forEach(option => {
     option.addEventListener("click", function () {
       const sortType = this.getAttribute("data-sort");
       if (universalSortState.type === sortType) {
-        // Toggle order if same sort type selected.
         universalSortState.order = universalSortState.order === "asc" ? "desc" : "asc";
       } else {
         universalSortState.type = sortType;
@@ -386,7 +381,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ------------------------------
-  // Popup and Long Press Handling for dynamically loaded items
+  // Popup and Long Press Handling for Dynamically Loaded Items
   document.querySelectorAll(".menu-item").forEach(item => {
     item.addEventListener("mousedown", function () {
       item.classList.add("long-pressing");
@@ -415,6 +410,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // ------------------------------
   // Popup Close Functionality
   document.querySelector(".close-popup").addEventListener("click", function () {
     document.getElementById("foodPopup").classList.remove("show");
@@ -506,6 +502,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ------------------------------
-  // Initial Load of Menu Items
+  // Initial Load
   loadMenu();
 });
