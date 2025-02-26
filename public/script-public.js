@@ -509,12 +509,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 document.getElementById('navToggle').addEventListener('click', function() {
   const header = document.querySelector('header');
-  if (header.style.display === 'none' || getComputedStyle(header).display === 'none') {
+  // Check the computed style of header to see if it's visible
+  if (getComputedStyle(header).display === 'none') {
     header.style.display = 'block';
-    this.innerHTML = '&#x25B2;'; // Up arrow indicates you can hide nav
+    this.innerHTML = '&#x25B2;'; // Up arrow when nav is visible (click to hide)
   } else {
     header.style.display = 'none';
-    this.innerHTML = '&#x25BC;'; // Down arrow indicates nav is hidden, click to show
+    this.innerHTML = '&#x25BC;'; // Down arrow when nav is hidden (click to show)
   }
 });
+
 
