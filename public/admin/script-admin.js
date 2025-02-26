@@ -1,25 +1,16 @@
-// script-admin.js
-
 document.addEventListener("DOMContentLoaded", async () => {
-    const auth0Client = await createAuth0Client({
-        domain: "dev-0132r5n5b6i1ud7p.us.auth0.com",
-        client_id: "B5av2t8rJs1Sor2vcVrOcXXxt5Be9zrI",
-        audience: "https://dev-0132r5n5b6i1ud7p.us.auth0.com/api/v2/",
-        scope: "openid profile email"
-    });
-
     const updateUI = async () => {
-        const isAuthenticated = await auth0Client.isAuthenticated();
-        if (isAuthenticated) {
-            const user = await auth0Client.getUser();
-            if (user["https://yourapp.com/roles"].includes("admin")) {
+        const user = netlifyIdentity.currentUser();
+        if (user) {
+            const roles = user.app_metadata.roles || [];
+            if (roles.includes("admin")) {
                 initCMS();
             } else {
                 alert("Access Denied: Admins only.");
                 window.location.href = "/";
             }
         } else {
-            auth0Client.loginWithRedirect();
+            netlifyIdentity.open();
         }
     };
 
@@ -74,5 +65,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     };
 
+    netlifyIdentity.on("login", updateUI);
+    netlifyIdentity.on("logout", () => window.location.href = "/");
+    netlifyIdentity.init();
     updateUI();
 });

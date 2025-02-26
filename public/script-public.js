@@ -1,12 +1,23 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  // Auth0 Configuration
-  const auth0Client = await createAuth0Client({
-    domain: "dev-0132r5n5b6i1ud7p.us.auth0.com",
-    client_id: "B5av2t8rJs1Sor2vcVrOcXXxt5Be9zrI",
-    redirect_uri: window.location.origin,
-    audience: "https://dev-0132r5n5b6i1ud7p.us.auth0.com/api/v2/",
-    scope: "openid profile email"
+  // Netlify Identity Initialization
+  const updateUI = () => {
+    const user = netlifyIdentity.currentUser();
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      loginBtn.style.display = "none";
+      logoutBtn.style.display = "block";
+    } else {
+      loginBtn.style.display = "block";
+      logoutBtn.style.display = "none";
+    }
+  };
+
+  netlifyIdentity.on("login", updateUI);
+  netlifyIdentity.on("logout", () => {
+    localStorage.removeItem("user");
+    updateUI();
   });
+  netlifyIdentity.init();
 
   // DOM Elements
   const loginBtn = document.getElementById("login");
@@ -15,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const body = document.body;
   const scrollToTopBtn = document.getElementById("scrollToTopBtn");
   const languageSwitcher = document.getElementById("languageSwitcher");
-  
+
   let currentPopupItem = null;
   let pressTimer;
   let lastTap = 0;
@@ -25,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   async function handleAuthCallback() {
     const query = window.location.search;
     if (query.includes("code=") && query.includes("state=")) {
-      await auth0Client.handleRedirectCallback();
+      await netlifyIdentity.handleRedirectCallback();
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }
@@ -33,35 +44,22 @@ document.addEventListener("DOMContentLoaded", async function () {
   await handleAuthCallback();
 
   // Check Authentication Status
-  async function updateUI() {
-    const isAuthenticated = await auth0Client.isAuthenticated();
-    if (isAuthenticated) {
-      const user = await auth0Client.getUser();
-      localStorage.setItem("user", JSON.stringify(user));
-      loginBtn.style.display = "none";
-      logoutBtn.style.display = "block";
-    } else {
-      loginBtn.style.display = "block";
-      logoutBtn.style.display = "none";
-    }
-  }
-
   updateUI();
 
   // Login & Logout Event Listeners
   loginBtn.addEventListener("click", () => {
-    auth0Client.loginWithRedirect();
+    netlifyIdentity.open();
   });
 
   logoutBtn.addEventListener("click", () => {
-    auth0Client.logout({ returnTo: window.location.origin });
+    netlifyIdentity.logout();
   });
 
   // Dark Mode
   if (localStorage.getItem("darkMode") === "enabled") {
     body.classList.add("dark-mode");
   }
-  
+
   darkModeToggle.addEventListener("click", function () {
     body.classList.toggle("dark-mode");
     localStorage.setItem("darkMode", body.classList.contains("dark-mode") ? "enabled" : "disabled");
@@ -94,76 +92,27 @@ document.addEventListener("DOMContentLoaded", async function () {
                data-image="${imagePath}"
                data-category="${category}"
                data-ingredients="${item.translations.en.ingredients}">
-            <img src="${imagePath}" alt="${item.id}">
-            <p><span data-i18n="${item.id}">${item.translations.en.name}</span> – <span>$${item.price}</span></p>
+            <img src="${imagePath}" alt="${item.translations.en.name}">
+            <div class="menu-item-details">
+              <h3>${item.translations.en.name}</h3>
+              <p>${item.translations.en.ingredients}</p>
+              <span>${item.price}</span>
+            </div>
           </div>
         `;
       })
       .join("");
-    attachItemListeners(container);
   }
 
-  function attachItemListeners(container) {
-    container.querySelectorAll(".menu-item").forEach(item => {
-      item.addEventListener("mousedown", handleMouseDown);
-      item.addEventListener("mouseup", handleMouseUp);
-      item.addEventListener("mouseleave", handleMouseLeave);
-      item.addEventListener("touchend", handleTouchEnd);
-    });
-  }
+  await loadMenu();
 
-  // Popup Handling
-  function openPopup(item) {
-    const itemId = item.dataset.id;
-    const category = item.dataset.category;
-    const currentLang = i18next.language;
-    fetch(`/data/menu/${category}.json`)
-      .then(res => res.json())
-      .then(items => {
-        const itemData = items.find(i => i.id === itemId);
-        const translations = itemData.translations[currentLang] || itemData.translations.en;
-        document.getElementById("popupName").textContent = translations.name;
-        document.getElementById("popupPrice").textContent = `$${itemData.price}`;
-        document.getElementById("popupIngredients").textContent = translations.ingredients;
-        document.getElementById("popupHealth").textContent = translations.health;
-        document.getElementById("popupImage").src = itemData.image.replace("Images/", "images/");
-        document.getElementById("foodPopup").classList.add("show");
-        currentPopupItem = item;
-      });
-  }
-
-  function handleMouseDown(e) {
-    this.classList.add("long-pressing");
-    pressTimer = setTimeout(() => {
-      openPopup(this);
-      this.classList.remove("long-pressing");
-    }, 1500);
-  }
-
-  function handleMouseUp() {
-    clearTimeout(pressTimer);
-    this.classList.remove("long-pressing");
-  }
-
-  function handleMouseLeave() {
-    clearTimeout(pressTimer);
-    this.classList.remove("long-pressing");
-  }
-
-  function handleTouchEnd(e) {
-    let currentTime = new Date().getTime();
-    let tapLength = currentTime - lastTap;
-    clearTimeout(pressTimer);
-    this.classList.remove("long-pressing");
-    if (tapLength < 500 && tapLength > 0) {
-      openPopup(this);
-    }
-    lastTap = currentTime;
-  }
-
-  // Scroll Management
+  // Scroll to Top
   window.addEventListener("scroll", () => {
-    scrollToTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    if (window.pageYOffset > 100) {
+      scrollToTopBtn.style.display = "block";
+    } else {
+      scrollToTopBtn.style.display = "none";
+    }
   });
 
   scrollToTopBtn.addEventListener("click", () => {
@@ -173,36 +122,56 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Language Switcher
   languageSwitcher.addEventListener("change", function () {
     const selectedLanguage = this.value;
-    i18next.changeLanguage(selectedLanguage, function (err, t) {
-      if (err) return console.error(err);
+    i18next.changeLanguage(selectedLanguage, () => {
       updateContent();
     });
   });
 
-  i18next
-    .use(i18nextHttpBackend)
-    .use(i18nextBrowserLanguageDetector)
-    .init(
-      {
-        lng: "en",
-        fallbackLng: "en",
-        debug: true,
-        backend: {
-          loadPath: "/data/translations/{{lng}}/translation.json",
-        },
-      },
-      function (err, t) {
-        if (err) return console.error(err);
-        updateContent();
-      }
-    );
-
   function updateContent() {
-    document.querySelectorAll("[data-i18n]").forEach(function (element) {
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
       element.textContent = i18next.t(element.getAttribute("data-i18n"));
     });
   }
 
-  // Initial Load
-  loadMenu();
+  i18next.init({
+    lng: "en",
+    debug: true,
+    resources: {
+      en: {
+        translation: {
+          // Add your English translations here
+        },
+      },
+      es: {
+        translation: {
+          // Add your Spanish translations here
+        },
+      },
+      ar: {
+        translation: {
+          // Add your Arabic translations here
+        },
+      },
+    },
+  }, () => {
+    updateContent();
+  });
+
+  // Popup Handling
+  document.querySelectorAll(".menu-item").forEach((item) => {
+    item.addEventListener("click", () => {
+      if (currentPopupItem) {
+        currentPopupItem.classList.remove("active");
+      }
+      currentPopupItem = item;
+      item.classList.add("active");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (currentPopupItem && !currentPopupItem.contains(e.target)) {
+      currentPopupItem.classList.remove("active");
+      currentPopupItem = null;
+    }
+  });
 });
