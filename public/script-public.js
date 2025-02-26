@@ -264,6 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+  document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll(".sort-btn").forEach(button => {
     button.addEventListener("click", function () {
       const category = this.getAttribute("data-category");
@@ -294,6 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+});
 
   // ------------------------------
   // Universal Sorting Overlay (New Feature)
