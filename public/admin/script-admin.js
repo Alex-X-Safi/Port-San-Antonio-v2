@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 },
                 load_config_file: false,
-                media_folder: 'public/Images',
-                public_folder: '/Images',
+                media_folder: 'public/images',
+                public_folder: '/images',
                 collections: [
                     {
                         name: 'menu',
