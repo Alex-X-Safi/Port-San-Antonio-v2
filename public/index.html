@@ -86,6 +86,11 @@
       const loginBtn = document.getElementById("login");
       const logoutBtn = document.getElementById("logout");
 
+      if (!loginBtn || !logoutBtn) {
+        console.error("Login or Logout button not found.");
+        return;
+      }
+
       netlifyIdentity.on("login", () => {
         loginBtn.style.display = "none";
         logoutBtn.style.display = "block";
