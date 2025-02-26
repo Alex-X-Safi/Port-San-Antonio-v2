@@ -32,6 +32,12 @@ document.addEventListener("DOMContentLoaded", async function () {
   let lastTap = 0;
   let touchStartX = null;
 
+  // Ensure Elements Exist Before Manipulating
+  if (!loginBtn || !logoutBtn || !darkModeToggle || !scrollToTopBtn || !languageSwitcher) {
+    console.error("One or more DOM elements not found.");
+    return;
+  }
+
   // Handle Authentication Redirect
   async function handleAuthCallback() {
     const query = window.location.search;
@@ -81,6 +87,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function renderCategory(category, items) {
     const container = document.querySelector(`.${category}`);
+    if (!container) {
+      console.error(`Container for category ${category} not found.`);
+      return;
+    }
     container.innerHTML = items
       .map(item => {
         let imagePath = item.image.replace("Images/", "images/");
