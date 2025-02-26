@@ -512,7 +512,6 @@ nav ul li a:hover {
 .close-sort {
     background: red;
 }
-
 /* Filter Button */
 .filter-btn {
     display: inline-block;
@@ -529,4 +528,16 @@ nav ul li a:hover {
 .filter-btn:hover {
     background: #005f8e;
     transform: scale(1.05);
+}
+.universal-sort-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
 }
