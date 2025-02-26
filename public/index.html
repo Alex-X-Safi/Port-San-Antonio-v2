@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Port San Antonio - Menu</title>
-  <link rel="stylesheet" href="styles-public.css" />
+  <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.14/i18next.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/1.4.1/i18nextHttpBackend.min.js"></script>
+  <script src="script.js" defer></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="script-public.js" defer></script>
 </head>
 <body id="content">
 
@@ -22,15 +22,13 @@
         <li><a href="#home" data-i18n="home">Home</a></li>
         <li><a href="#menu" data-i18n="menu">Menu</a></li>
         <li><a href="#contact" data-i18n="contact">Contact</a></li>
-        <li><a href="/admin/" data-i18n="admin">Admin</a></li>
+        <li><a href="#admin" data-i18n="admin">Admin</a></li>
         <button id="darkModeToggle">🌙 <span data-i18n="darkMode">Dark Mode</span></button>
         <select id="languageSwitcher">
           <option value="en">English</option>
           <option value="es">Español</option>
           <option value="ar">العربية</option>
         </select>
-        <li><button id="login" data-i18n="login">Login</button></li>
-        <li><button id="logout" data-i18n="logout" style="display:none;">Logout</button></li>
       </ul>
     </nav>
   </header>
@@ -56,63 +54,181 @@
         <option value="gluten-free" data-i18n="glutenFree">Gluten-Free</option>
       </select>
     </div>
-    <div id="menu-items" class="menu-items"></div>
+    <div class="menu-container">
+      <!-- Sandwiches Category -->
+      <div class="menu-category">
+        <h3>
+          <span data-i18n="sandwiches">Sandwiches</span>
+          <button class="filter-btn"><i class="fas fa-cog"></i></button>
+        </h3>
+        <div class="sort-overlay hidden">
+          <div class="sort-menu">
+            <h4 data-i18n="sortSandwiches">Sort Sandwiches</h4>
+            <button class="sort-btn" data-category="sandwiches" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
+            <button class="sort-btn" data-category="sandwiches" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
+            <button class="close-sort" data-i18n="close">Close</button>
+          </div>
+        </div>
+        <div class="menu-items sandwiches">
+          <!-- Dynamic content will be loaded here -->
+        </div>
+      </div>
+      <!-- Salads Category -->
+      <div class="menu-category">
+        <h3>
+          <span data-i18n="salads">Salads</span>
+          <button class="filter-btn"><i class="fas fa-cog"></i></button>
+        </h3>
+        <div class="sort-overlay hidden">
+          <div class="sort-menu">
+            <h4 data-i18n="sortSalads">Sort Salads</h4>
+            <button class="sort-btn" data-category="salads" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
+            <button class="sort-btn" data-category="salads" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
+            <button class="close-sort" data-i18n="close">Close</button>
+          </div>
+        </div>
+        <div class="menu-items salads">
+          <!-- Dynamic content will be loaded here -->
+        </div>
+      </div>
+      <!-- Main Dishes Category -->
+      <div class="menu-category">
+        <h3>
+          <span data-i18n="mainDishes">Main Dishes</span>
+          <button class="filter-btn"><i class="fas fa-cog"></i></button>
+        </h3>
+        <div class="sort-overlay hidden">
+          <div class="sort-menu">
+            <h4 data-i18n="sortMainDishes">Sort Main Dishes</h4>
+            <button class="sort-btn" data-category="main-dishes" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
+            <button class="sort-btn" data-category="main-dishes" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
+            <button class="close-sort" data-i18n="close">Close</button>
+          </div>
+        </div>
+        <div class="menu-items main-dishes">
+          <!-- Dynamic content will be loaded here -->
+        </div>
+      </div>
+      <!-- Drinks Category -->
+      <div class="menu-category">
+        <h3>
+          <span data-i18n="drinks">Drinks</span>
+          <button class="filter-btn"><i class="fas fa-cog"></i></button>
+        </h3>
+        <div class="sort-overlay hidden">
+          <div class="sort-menu">
+            <h4 data-i18n="sortDrinks">Sort Drinks</h4>
+            <button class="sort-btn" data-category="drinks" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
+            <button class="sort-btn" data-category="drinks" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
+            <button class="close-sort" data-i18n="close">Close</button>
+          </div>
+        </div>
+        <div class="menu-items drinks">
+          <!-- Dynamic content will be loaded here -->
+        </div>
+      </div>
+      <!-- Platters Category -->
+      <div class="menu-category">
+        <h3>
+          <span data-i18n="platters">Platters</span>
+          <button class="filter-btn"><i class="fas fa-cog"></i></button>
+        </h3>
+        <div class="sort-overlay hidden">
+          <div class="sort-menu">
+            <h4 data-i18n="sortPlatters">Sort Platters</h4>
+            <button class="sort-btn" data-category="platters" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
+            <button class="sort-btn" data-category="platters" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
+            <button class="close-sort" data-i18n="close">Close</button>
+          </div>
+        </div>
+        <div class="menu-items platters">
+          <!-- Dynamic content will be loaded here -->
+        </div>
+      </div>
+      <!-- Alcoholic Drinks & Sides Category -->
+      <div class="menu-category">
+        <h3>
+          <span data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</span>
+          <button class="filter-btn"><i class="fas fa-cog"></i></button>
+        </h3>
+        <div class="sort-overlay hidden">
+          <div class="sort-menu">
+            <h4 data-i18n="sortAlcoholic">Sort Alcoholic Drinks & Sides</h4>
+            <button class="sort-btn" data-category="alcoholic" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
+            <button class="sort-btn" data-category="alcoholic" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
+            <button class="close-sort" data-i18n="close">Close</button>
+          </div>
+        </div>
+        <div class="menu-items alcoholic">
+          <!-- Dynamic content will be loaded here -->
+        </div>
+      </div>
+    </div> <!-- End of menu-container -->
   </section>
+
+  <!-- Admin Dashboard Section -->
+  <section id="admin" style="display: none;">
+    <h2 data-i18n="adminDashboard">Admin Dashboard</h2>
+    <div class="admin-container">
+      <form id="adminForm">
+        <label for="name" data-i18n="itemName">Item Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="price" data-i18n="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+        
+        <label for="category" data-i18n="category">Category:</label>
+        <select id="category" name="category" required>
+          <option value="sandwiches" data-i18n="sandwiches">Sandwiches</option>
+          <option value="salads" data-i18n="salads">Salads</option>
+          <option value="main-dishes" data-i18n="mainDishes">Main Dishes</option>
+          <option value="drinks" data-i18n="drinks">Drinks</option>
+          <option value="platters" data-i18n="platters">Platters</option>
+          <option value="alcoholic" data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</option>
+        </select>
+        
+        <label for="image" data-i18n="imageUrl">Image URL:</label>
+        <input type="text" id="image" name="image" required>
+        
+        <label for="ingredients" data-i18n="ingredients">Ingredients:</label>
+        <textarea id="ingredients" name="ingredients" required></textarea>
+        
+        <label for="health" data-i18n="healthInfo">Health Info:</label>
+        <textarea id="health" name="health" required></textarea>
+        
+        <button type="submit" data-i18n="addItem">Add Item</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Food Item Popup -->
+  <div id="foodPopup" class="popup hidden">
+    <div class="popup-content">
+      <span class="close-popup">&times;</span>
+      <!-- Popup Navigation Arrows -->
+      <button id="popupPrev">&#10094;</button>
+      <button id="popupNext">&#10095;</button>
+      <img id="popupImage" src="placeholder.jpg" alt="Food Image">
+      <h2 id="popupName">Food Name</h2>
+      <p><strong data-i18n="priceLabel">Price:</strong> <span id="popupPrice">$0</span></p>
+      <p><strong data-i18n="ingredientsLabel">Ingredients:</strong> <span id="popupIngredients">Placeholder Ingredients</span></p>
+      <p><strong data-i18n="healthValuesLabel">Health Values:</strong> <span id="popupHealth">Placeholder Health Values</span></p>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollToTopBtn" class="scroll-to-top-btn">⬆️</button>
 
   <!-- Contact Section -->
-  <section id="contact" style="display: none;">
-    <h2 data-i18n="contact">Contact Us</h2>
-    <form id="contact-form">
-      <label for="name" data-i18n="name">Name</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email" data-i18n="email">Email</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message" data-i18n="message">Message</label>
-      <textarea id="message" name="message" required></textarea>
-
-      <button type="submit" data-i18n="sendMessage">Send Message</button>
-    </form>
+  <section id="contact">
+    <h2 data-i18n="contactUs">Contact Us</h2>
+    <p data-i18n="questions">Have questions? Reach out to us!</p>
+    <div class="contact-info">
+      <p data-i18n="email">Email: contact@portsanantonio.com</p>
+      <p data-i18n="phone">Phone: +39 123 456 7890</p>
+      <p data-i18n="location">Location: Ancona, Italy</p>
+    </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p data-i18n="footerMessage">&copy; 2025 Port San Antonio. All rights reserved.</p>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const loginBtn = document.getElementById("login");
-      const logoutBtn = document.getElementById("logout");
-
-      if (!loginBtn || !logoutBtn) {
-        console.error("Login or Logout button not found.");
-        return;
-      }
-
-      netlifyIdentity.on("login", () => {
-        loginBtn.style.display = "none";
-        logoutBtn.style.display = "block";
-        location.reload();
-      });
-
-      netlifyIdentity.on("logout", () => {
-        loginBtn.style.display = "block";
-        logoutBtn.style.display = "none";
-        location.reload();
-      });
-
-      loginBtn.addEventListener("click", () => {
-        netlifyIdentity.open();
-      });
-
-      logoutBtn.addEventListener("click", () => {
-        netlifyIdentity.logout();
-      });
-
-      netlifyIdentity.init();
-    });
-  </script>
 </body>
 </html>
