@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("darkMode") === "enabled") {
     body.classList.add("dark-mode");
   }
-
   toggleButton.addEventListener("click", function () {
     body.classList.toggle("dark-mode");
     localStorage.setItem("darkMode", body.classList.contains("dark-mode") ? "enabled" : "disabled");
@@ -119,25 +118,22 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function handleMouseDown(e) {
+  function handleMouseDown() {
     this.classList.add("long-pressing");
     pressTimer = setTimeout(() => {
       openPopup(this);
       this.classList.remove("long-pressing");
     }, 1500);
   }
-
   function handleMouseUp() {
     clearTimeout(pressTimer);
     this.classList.remove("long-pressing");
   }
-
   function handleMouseLeave() {
     clearTimeout(pressTimer);
     this.classList.remove("long-pressing");
   }
-
-  function handleTouchEnd(e) {
+  function handleTouchEnd() {
     let currentTime = new Date().getTime();
     let tapLength = currentTime - lastTap;
     clearTimeout(pressTimer);
@@ -151,7 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Popup Navigation
   document.getElementById("popupPrev").addEventListener("click", () => navigatePopup(-1));
   document.getElementById("popupNext").addEventListener("click", () => navigatePopup(1));
-
   function navigatePopup(direction) {
     const items = Array.from(document.querySelectorAll(".menu-item"));
     if (!currentPopupItem) return;
@@ -176,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
       updateContent();
     });
   });
-
   i18next
     .use(i18nextHttpBackend)
     .use(i18nextBrowserLanguageDetector)
@@ -185,9 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
         lng: "en",
         fallbackLng: "en",
         debug: true,
-        backend: {
-          loadPath: "/data/translations/{{lng}}/translation.json"
-        },
+        backend: { loadPath: "/data/translations/{{lng}}/translation.json" },
         detection: {
           order: ["querystring", "cookie", "localStorage", "navigator", "htmlTag", "path", "subdomain"],
           caches: ["localStorage", "cookie"]
@@ -198,7 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateContent();
       }
     );
-
   function updateContent() {
     document.querySelectorAll("[data-i18n]").forEach(function (element) {
       element.textContent = i18next.t(element.getAttribute("data-i18n"));
@@ -247,82 +238,67 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Sorting Overlay Toggle (Filter Button)
-  document.querySelectorAll(".filter-btn").forEach(button => {
-    button.addEventListener("click", function () {
-      let overlay = this.closest(".menu-category").querySelector(".sort-overlay");
-      if (overlay) {
-        overlay.classList.remove("hidden");
+  // === Universal Sorting Feature ===
+  const universalSortBtn = document.querySelector(".universal-sort-btn");
+  if (universalSortBtn) {
+    universalSortBtn.addEventListener("click", function () {
+      const sortType = prompt("Enter sort type: 'price' or 'name'");
+      if (!sortType || (sortType !== "price" && sortType !== "name")) {
+        alert("Invalid sort type");
+        return;
       }
-    });
-  });
-
-  // Close Sort Overlay
-  document.querySelectorAll(".close-sort").forEach(button => {
-    button.addEventListener("click", function () {
-      let overlay = this.closest(".sort-overlay");
-      if (overlay) {
-        overlay.classList.add("hidden");
+      const order = prompt("Enter sort order: 'asc' or 'desc'");
+      if (!order || (order !== "asc" && order !== "desc")) {
+        alert("Invalid sort order");
+        return;
       }
-    });
-  });
-
-  // Sorting Functionality for Sort Buttons
-  let currentSort = { type: null, order: "asc" };
-  document.querySelectorAll(".sort-btn").forEach(button => {
-    button.addEventListener("click", function () {
-      const category = this.getAttribute("data-category");
-      const sortType = this.getAttribute("data-sort");
-      const container = document.querySelector(`.${category}`);
-      const items = Array.from(container.children);
-      if (currentSort.type === sortType) {
-        currentSort.order = currentSort.order === "asc" ? "desc" : "asc";
-      } else {
-        currentSort.type = sortType;
-        currentSort.order = "asc";
-      }
-      items.sort((a, b) => {
-        let valueA, valueB;
-        if (sortType === "price") {
-          valueA = parseFloat(a.getAttribute("data-price"));
-          valueB = parseFloat(b.getAttribute("data-price"));
-        } else {
-          valueA = a.getAttribute("data-name").toLowerCase();
-          valueB = b.getAttribute("data-name").toLowerCase();
-        }
-        if (valueA > valueB) return currentSort.order === "asc" ? 1 : -1;
-        if (valueA < valueB) return currentSort.order === "asc" ? -1 : 1;
-        return 0;
+      document.querySelectorAll(".menu-items").forEach(container => {
+        const items = Array.from(container.children);
+        items.sort((a, b) => {
+          let valueA, valueB;
+          if (sortType === "price") {
+            valueA = parseFloat(a.getAttribute("data-price"));
+            valueB = parseFloat(b.getAttribute("data-price"));
+          } else {
+            valueA = a.getAttribute("data-name").toLowerCase();
+            valueB = b.getAttribute("data-name").toLowerCase();
+          }
+          if (valueA > valueB) return order === "asc" ? 1 : -1;
+          if (valueA < valueB) return order === "asc" ? -1 : 1;
+          return 0;
+        });
+        container.innerHTML = "";
+        items.forEach(item => container.appendChild(item));
       });
-      container.innerHTML = "";
-      items.forEach(item => container.appendChild(item));
-      let overlay = container.closest(".menu-category").querySelector(".sort-overlay");
-      if (overlay) {
-        overlay.classList.add("hidden");
-      }
     });
-  });
+  } else {
+    console.error("Universal sort button not found.");
+  }
 
-  // Filtering Functionality
+  // === Fix Filter Functionality ===
   const filterSelect = document.getElementById("filter");
-  filterSelect.addEventListener("change", function () {
-    const filterValue = this.value;
-    document.querySelectorAll(".menu-item").forEach(item => {
-      if (filterValue === "all") {
-        item.style.display = "flex";
-      } else {
-        if (item.dataset.ingredients.toLowerCase().includes(filterValue.toLowerCase())) {
+  if (filterSelect) {
+    filterSelect.addEventListener("change", function () {
+      const filterValue = this.value;
+      document.querySelectorAll(".menu-item").forEach(item => {
+        if (filterValue === "all") {
           item.style.display = "flex";
         } else {
-          item.style.display = "none";
+          if (item.dataset.ingredients.toLowerCase().includes(filterValue.toLowerCase())) {
+            item.style.display = "flex";
+          } else {
+            item.style.display = "none";
+          }
         }
-      }
+      });
     });
-  });
+  } else {
+    console.error("Filter select element not found.");
+  }
 
-  // Popup and Long Press Handling on Menu Items (for dynamically loaded items)
+  // Popup and Long Press Handling for dynamically loaded items
   document.querySelectorAll(".menu-item").forEach(item => {
-    item.addEventListener("mousedown", function (e) {
+    item.addEventListener("mousedown", function () {
       item.classList.add("long-pressing");
       pressTimer = setTimeout(() => {
         openPopup(item);
@@ -337,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
       clearTimeout(pressTimer);
       item.classList.remove("long-pressing");
     });
-    item.addEventListener("touchend", function (e) {
+    item.addEventListener("touchend", function () {
       let currentTime = new Date().getTime();
       let tapLength = currentTime - lastTap;
       clearTimeout(pressTimer);
@@ -411,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     container.appendChild(itemElement);
     // Re-apply long press events for the new item.
-    itemElement.addEventListener("mousedown", function (e) {
+    itemElement.addEventListener("mousedown", function () {
       itemElement.classList.add("long-pressing");
       pressTimer = setTimeout(() => {
         openPopup(itemElement);
@@ -426,7 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
       clearTimeout(pressTimer);
       itemElement.classList.remove("long-pressing");
     });
-    itemElement.addEventListener("touchend", function (e) {
+    itemElement.addEventListener("touchend", function () {
       let currentTime = new Date().getTime();
       let tapLength = currentTime - lastTap;
       clearTimeout(pressTimer);
