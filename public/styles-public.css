@@ -612,4 +612,22 @@ nav ul li button,
 .nav-toggle:hover {
   background: rgba(0, 0, 0, 0.7);
 }
+/* Arrow Toggle Button - smaller version */
+.nav-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  padding: 4px 8px;     /* Reduced padding for a smaller button */
+  font-size: 0.9rem;    /* Smaller font size */
+  cursor: pointer;
+  z-index: 1200;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+.nav-toggle:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
 
