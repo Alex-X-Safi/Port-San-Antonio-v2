@@ -507,3 +507,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initial Load
   loadMenu();
 });
+document.getElementById('navToggle').addEventListener('click', function() {
+  const header = document.querySelector('header');
+  if (header.style.display === 'none' || getComputedStyle(header).display === 'none') {
+    header.style.display = 'block';
+    this.innerHTML = '&#x25B2;'; // Up arrow indicates you can hide nav
+  } else {
+    header.style.display = 'none';
+    this.innerHTML = '&#x25BC;'; // Down arrow indicates nav is hidden, click to show
+  }
+});
+
