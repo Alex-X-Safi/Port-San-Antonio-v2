@@ -27,12 +27,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const scrollToTopBtn = document.getElementById("scrollToTopBtn");
   const languageSwitcher = document.getElementById("languageSwitcher");
 
-  let currentPopupItem = null;
-  let pressTimer;
-  let lastTap = 0;
-  let touchStartX = null;
-
-  // Ensure Elements Exist Before Manipulating
   if (!loginBtn || !logoutBtn || !darkModeToggle || !scrollToTopBtn || !languageSwitcher) {
     console.error("One or more DOM elements not found.");
     return;
