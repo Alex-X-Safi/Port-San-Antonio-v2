@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
   // Netlify Identity Initialization
   const updateUI = () => {
     const user = netlifyIdentity.currentUser();
@@ -39,29 +39,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("One or more DOM elements not found.");
     return;
   }
-
-  // Handle Authentication Redirect
-  async function handleAuthCallback() {
-    const query = window.location.search;
-    if (query.includes("code=") && query.includes("state=")) {
-      await netlifyIdentity.handleRedirectCallback();
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  }
-
-  await handleAuthCallback();
-
-  // Check Authentication Status
-  updateUI();
-
-  // Login & Logout Event Listeners
-  loginBtn.addEventListener("click", () => {
-    netlifyIdentity.open();
-  });
-
-  logoutBtn.addEventListener("click", () => {
-    netlifyIdentity.logout();
-  });
 
   // Dark Mode
   if (localStorage.getItem("darkMode") === "enabled") {
