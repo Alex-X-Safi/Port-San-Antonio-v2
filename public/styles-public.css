@@ -653,5 +653,16 @@ nav ul li button,
     color: white;
     text-decoration: none;
 }
+.menu-toggle {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* If you want it always in the top-right corner, for example: */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
 
 
