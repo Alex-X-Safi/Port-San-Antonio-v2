@@ -613,14 +613,14 @@ nav ul li button,
   background: rgba(0, 0, 0, 0.7);
 }
 .menu-toggle {
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1000;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
 }
 
 .sidebar-menu {
@@ -653,16 +653,6 @@ nav ul li button,
     color: white;
     text-decoration: none;
 }
-.menu-toggle {
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  /* If you want it always in the top-right corner, for example: */
-  position: absolute;
-  top: 10px;
-  right: 3px;
-  z-index: 1000;
-}
+
 
 
