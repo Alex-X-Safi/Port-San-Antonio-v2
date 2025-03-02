@@ -1,27 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Navigation Sidebar Setup ---
-  // Use the static elements in your HTML for the menu toggle and sidebar.
   const menuButton = document.querySelector(".menu-toggle");
   const sidebar = document.querySelector(".sidebar-menu");
 
   if (menuButton && sidebar) {
-    // Toggle the "open" class on the sidebar when the menu button is clicked.
+    // Toggle the "open" class on click
     menuButton.addEventListener("click", () => {
       sidebar.classList.toggle("open");
     });
   }
 
-  // --- Responsive Behavior ---
-  // Show the menu button only on smaller screens.
+  // Optional: If you want the menu toggle always visible, you can remove the conditional hide.
+  // Otherwise, use the code below to show/hide on small screens.
   window.addEventListener("resize", () => {
+    // Example: always show the button:
+    if (menuButton) menuButton.style.display = "block";
+    
+    // If you want to hide on larger screens, uncomment the following:
+    /*
     if (window.innerWidth < 768) {
-      if (menuButton) menuButton.style.display = "block";
+      menuButton.style.display = "block";
     } else {
-      if (menuButton) menuButton.style.display = "none";
-      // Also hide the sidebar when resizing to larger screens.
+      menuButton.style.display = "none";
       if (sidebar) sidebar.classList.remove("open");
     }
-    
-     // Just always show the button:
-      menuButton.style.display = "block";
+    */
   });
+});
