@@ -661,7 +661,7 @@ nav ul li button,
   /* If you want it always in the top-right corner, for example: */
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 3px;
   z-index: 1000;
 }
 
