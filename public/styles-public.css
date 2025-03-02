@@ -612,5 +612,46 @@ nav ul li button,
 .nav-toggle:hover {
   background: rgba(0, 0, 0, 0.7);
 }
+.menu-toggle {
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+}
+
+.sidebar-menu {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #333;
+    color: white;
+    padding: 15px;
+    transition: 0.3s;
+    z-index: 999;
+}
+
+.sidebar-menu.open {
+    left: 0;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu ul li {
+    padding: 10px 0;
+}
+
+.sidebar-menu ul li a {
+    color: white;
+    text-decoration: none;
+}
 
 
