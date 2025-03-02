@@ -1,44 +1,23 @@
-/* Fixing CTA and Testimonials buttons */
-// Ensure buttons navigate correctly
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".cta-button").addEventListener("click", function () {
-        window.location.href = "#cta-section";
+document.addEventListener("DOMContentLoaded", () => {
+  // Query the static menu toggle button and sidebar from your HTML.
+  const menuButton = document.querySelector(".menu-toggle");
+  const sidebar = document.querySelector(".sidebar-menu");
+
+  if (menuButton && sidebar) {
+    // Toggle the "open" class on the sidebar when the menu button is clicked.
+    menuButton.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
     });
-    document.querySelector(".testimonials-button").addEventListener("click", function () {
-        window.location.href = "#testimonials-section";
-    });
-});
+  }
 
-/* Adding Three-Striped Button */
-const menuButton = document.createElement("button");
-menuButton.classList.add("menu-toggle");
-menuButton.innerHTML = "&#9776;"; // Three-striped icon
-
-document.querySelector(".navbar").prepend(menuButton);
-
-/* Sidebar Menu */
-const sidebar = document.createElement("div");
-sidebar.classList.add("sidebar-menu");
-sidebar.innerHTML = `
-    <ul>
-        <li><a href="#">Reserve a Table</a></li>
-        <li><a href="#">Share on Facebook</a></li>
-        <li><a href="#">Share on Twitter</a></li>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-    </ul>
-`;
-document.body.appendChild(sidebar);
-
-menuButton.addEventListener("click", function () {
-    sidebar.classList.toggle("open");
-});
-
-/* Ensuring Visibility */
-window.addEventListener("resize", function () {
+  // Responsive behavior: show the menu button on small screens, hide it on larger screens.
+  window.addEventListener("resize", () => {
     if (window.innerWidth < 768) {
-        menuButton.style.display = "block";
+      if (menuButton) menuButton.style.display = "block";
     } else {
-        menuButton.style.display = "none";
+      if (menuButton) menuButton.style.display = "none";
+      // Optionally, close the sidebar when resizing to larger screens.
+      if (sidebar) sidebar.classList.remove("open");
     }
+  });
 });
