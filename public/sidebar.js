@@ -21,12 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Also hide the sidebar when resizing to larger screens.
       if (sidebar) sidebar.classList.remove("open");
     }
+    
+     // Just always show the button:
+      menuButton.style.display = "block";
   });
-
-  // Trigger the initial resize logic so the menu button is hidden if the window is already large.
-  if (window.innerWidth < 768) {
-    if (menuButton) menuButton.style.display = "block";
-  } else {
-    if (menuButton) menuButton.style.display = "none";
-  }
-});
