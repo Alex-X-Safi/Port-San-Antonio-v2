@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Query the static menu toggle button and sidebar from your HTML.
+  // --- Navigation Sidebar Setup ---
+  // Use the static elements in your HTML for the menu toggle and sidebar.
   const menuButton = document.querySelector(".menu-toggle");
   const sidebar = document.querySelector(".sidebar-menu");
 
@@ -10,14 +11,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Responsive behavior: show the menu button on small screens, hide it on larger screens.
+  // --- Responsive Behavior ---
+  // Show the menu button only on smaller screens.
   window.addEventListener("resize", () => {
     if (window.innerWidth < 768) {
       if (menuButton) menuButton.style.display = "block";
     } else {
       if (menuButton) menuButton.style.display = "none";
-      // Optionally, close the sidebar when resizing to larger screens.
+      // Also hide the sidebar when resizing to larger screens.
       if (sidebar) sidebar.classList.remove("open");
     }
   });
+
+  // Trigger the initial resize logic so the menu button is hidden if the window is already large.
+  if (window.innerWidth < 768) {
+    if (menuButton) menuButton.style.display = "block";
+  } else {
+    if (menuButton) menuButton.style.display = "none";
+  }
 });
