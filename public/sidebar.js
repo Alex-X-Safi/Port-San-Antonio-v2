@@ -1,45 +1,23 @@
-/* Sidebar hidden by default */
-.sidebar-menu {
-  position: fixed;
-  left: -250px;
-  top: 0;
-  width: 250px;
-  height: 100%;
-  background: #333;
-  color: white;
-  padding: 15px;
-  transition: left 0.3s;
-  z-index: 9999; /* above main content */
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButton = document.querySelector(".menu-toggle");
+  const sidebar = document.querySelector(".sidebar-menu");
 
-.sidebar-menu.open {
-  left: 0; /* slides in */
-}
+  if (menuButton && sidebar) {
+    menuButton.addEventListener("click", () => {
+      // Toggle the open class to slide the sidebar in/out
+      sidebar.classList.toggle("open");
+    });
+  }
 
-.sidebar-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-menu ul li {
-  margin: 10px 0;
-}
-
-.sidebar-menu ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* The three-striped button */
-.menu-toggle {
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: fixed; /* so it stays in the corner */
-  top: 15px;
-  left: 15px;
-  z-index: 10000; /* above the sidebar */
-  color: #333; /* change color if you want white or something else */
-}
+  // If you ONLY want the button to appear on mobile, use:
+  /*
+  window.addEventListener("resize", () => {
+    if (window.innerWidth < 768) {
+      menuButton.style.display = "block";
+    } else {
+      menuButton.style.display = "none";
+      sidebar.classList.remove("open");
+    }
+  });
+  */
+});
