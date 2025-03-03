@@ -25,15 +25,15 @@
 </head>
 <body>
 
-  <!-- Sea Animation Loader (Optional) -->
+  <!-- SEA ANIMATION LOADER (Optional) -->
   <div class="sea-loader">
     <div class="wave"></div>
     <div class="wave"></div>
     <div class="wave"></div>
-    <!-- You can add a logo or text here if you want -->
+    <!-- Add logo or text here if desired -->
   </div>
 
-  <!-- Header and Navigation -->
+  <!-- HEADER & NAV -->
   <header>
     <nav>
       <div class="logo" data-i18n="logo">Port San Antonio</div>
@@ -44,7 +44,9 @@
         <li><a href="#cta" data-i18n="cta">Call to Action</a></li>
         <li><a href="#contact" data-i18n="contact">Contact</a></li>
         <li><a href="#admin" data-i18n="admin">Admin</a></li>
-        <li><button id="darkModeToggle">🌙 <span data-i18n="darkMode">Dark Mode</span></button></li>
+        <li>
+          <button id="darkModeToggle">🌙 <span data-i18n="darkMode">Dark Mode</span></button>
+        </li>
         <li>
           <select id="languageSwitcher">
             <option value="en">English</option>
@@ -55,12 +57,12 @@
         <li><button id="login" data-i18n="login">Login</button></li>
         <li><button id="logout" data-i18n="logout" style="display:none;">Logout</button></li>
       </ul>
-      <!-- Menu Toggle Button -->
+      <!-- Three-Striped Menu Toggle Button -->
       <button class="menu-toggle">&#9776;</button>
     </nav>
   </header>
 
-  <!-- Sidebar -->
+  <!-- SIDEBAR (only one) -->
   <div class="sidebar-menu">
     <ul>
       <li><a href="#">Reserve a Table</a></li>
@@ -71,10 +73,7 @@
     </ul>
   </div>
 
-  <!-- Navigation Toggle Button -->
-  <button id="navToggle" class="nav-toggle">&#x25B2;</button>
-
-  <!-- Hero Section -->
+  <!-- HERO SECTION -->
   <section id="home" class="hero">
     <div class="hero-content">
       <h1 data-i18n="welcomeMessage">Welcome to Port San Antonio</h1>
@@ -83,7 +82,7 @@
     </div>
   </section>
 
-  <!-- Menu Section -->
+  <!-- MENU SECTION -->
   <section id="menu">
     <h2 data-i18n="ourMenu">Our Menu</h2>
     <div class="filter-container">
@@ -97,7 +96,7 @@
       <button class="universal-sort-btn"><i class="fas fa-cogs"></i></button>
     </div>
     <div class="menu-container">
-      <!-- Sandwiches Category -->
+      <!-- SANDWICHES -->
       <div class="menu-category">
         <h3>
           <span data-i18n="sandwiches">Sandwiches</span>
@@ -112,10 +111,10 @@
           </div>
         </div>
         <div class="menu-items sandwiches">
-          <!-- Dynamic content will be loaded here -->
+          <!-- Dynamic content loaded here -->
         </div>
       </div>
-      <!-- Salads Category -->
+      <!-- SALADS -->
       <div class="menu-category">
         <h3>
           <span data-i18n="salads">Salads</span>
@@ -130,10 +129,10 @@
           </div>
         </div>
         <div class="menu-items salads">
-          <!-- Dynamic content will be loaded here -->
+          <!-- Dynamic content loaded here -->
         </div>
       </div>
-      <!-- Main Dishes Category -->
+      <!-- MAIN DISHES -->
       <div class="menu-category">
         <h3>
           <span data-i18n="mainDishes">Main Dishes</span>
@@ -148,10 +147,10 @@
           </div>
         </div>
         <div class="menu-items main-dishes">
-          <!-- Dynamic content will be loaded here -->
+          <!-- Dynamic content loaded here -->
         </div>
       </div>
-      <!-- Drinks Category -->
+      <!-- DRINKS -->
       <div class="menu-category">
         <h3>
           <span data-i18n="drinks">Drinks</span>
@@ -166,10 +165,10 @@
           </div>
         </div>
         <div class="menu-items drinks">
-          <!-- Dynamic content will be loaded here -->
+          <!-- Dynamic content loaded here -->
         </div>
       </div>
-      <!-- Platters Category -->
+      <!-- PLATTERS -->
       <div class="menu-category">
         <h3>
           <span data-i18n="platters">Platters</span>
@@ -184,10 +183,10 @@
           </div>
         </div>
         <div class="menu-items platters">
-          <!-- Dynamic content will be loaded here -->
+          <!-- Dynamic content loaded here -->
         </div>
       </div>
-      <!-- Alcoholic Drinks & Sides Category -->
+      <!-- ALCOHOLIC & SIDES -->
       <div class="menu-category">
         <h3>
           <span data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</span>
@@ -202,38 +201,38 @@
           </div>
         </div>
         <div class="menu-items alcoholic">
-          <!-- Dynamic content will be loaded here -->
+          <!-- Dynamic content loaded here -->
         </div>
       </div>
-    </div> <!-- End of menu-container -->
-  </section>
-
-  <!-- Testimonials Section -->
-  <section id="testimonials">
-    <h2 data-i18n="testimonials">Testimonials</h2>
-    <div id="testimonials-container">
-      <!-- Dynamic content will be loaded from public_testimonials.html -->
     </div>
   </section>
 
-  <!-- Call to Action (CTA) Section -->
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <h2 data-i18n="testimonials">Testimonials</h2>
+    <div id="testimonials-container">
+      <!-- public_testimonials.html will load here -->
+    </div>
+  </section>
+
+  <!-- CTA -->
   <section id="cta">
     <h2 data-i18n="ctaTitle">Join Our Newsletter</h2>
     <p data-i18n="ctaText">Subscribe to receive the latest updates and offers.</p>
     <button onclick="ctaFunction()" data-i18n="subscribeButton">Subscribe</button>
   </section>
 
-  <!-- Admin Dashboard Section -->
+  <!-- ADMIN DASHBOARD -->
   <section id="admin" style="display: none;">
     <h2 data-i18n="adminDashboard">Admin Dashboard</h2>
     <div class="admin-container">
       <form id="adminForm">
         <label for="name" data-i18n="itemName">Item Name:</label>
-        <input type="text" id="name" name="name" required>
-        
+        <input type="text" id="name" name="name" required/>
+
         <label for="price" data-i18n="price">Price:</label>
-        <input type="number" id="price" name="price" required>
-        
+        <input type="number" id="price" name="price" required/>
+
         <label for="category" data-i18n="category">Category:</label>
         <select id="category" name="category" required>
           <option value="sandwiches" data-i18n="sandwiches">Sandwiches</option>
@@ -243,40 +242,49 @@
           <option value="platters" data-i18n="platters">Platters</option>
           <option value="alcoholic" data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</option>
         </select>
-        
+
         <label for="image" data-i18n="imageUrl">Image URL:</label>
-        <input type="text" id="image" name="image" required>
-        
+        <input type="text" id="image" name="image" required/>
+
         <label for="ingredients" data-i18n="ingredients">Ingredients:</label>
         <textarea id="ingredients" name="ingredients" required></textarea>
-        
+
         <label for="health" data-i18n="healthInfo">Health Info:</label>
         <textarea id="health" name="health" required></textarea>
-        
+
         <button type="submit" data-i18n="addItem">Add Item</button>
       </form>
     </div>
   </section>
 
-  <!-- Food Item Popup -->
+  <!-- FOOD ITEM POPUP -->
   <div id="foodPopup" class="popup hidden">
     <div class="popup-content">
       <span class="close-popup">&times;</span>
       <!-- Popup Navigation Arrows -->
       <button id="popupPrev">&#10094;</button>
       <button id="popupNext">&#10095;</button>
-      <img id="popupImage" src="images/placeholder.jpg" alt="Food Image">
+      <img id="popupImage" src="images/placeholder.jpg" alt="Food Image"/>
       <h2 id="popupName">Food Name</h2>
-      <p><strong data-i18n="priceLabel">Price:</strong> <span id="popupPrice">$0</span></p>
-      <p><strong data-i18n="ingredientsLabel">Ingredients:</strong> <span id="popupIngredients">Placeholder Ingredients</span></p>
-      <p><strong data-i18n="healthValuesLabel">Health Values:</strong> <span id="popupHealth">Placeholder Health Values</span></p>
+      <p>
+        <strong data-i18n="priceLabel">Price:</strong> 
+        <span id="popupPrice">$0</span>
+      </p>
+      <p>
+        <strong data-i18n="ingredientsLabel">Ingredients:</strong> 
+        <span id="popupIngredients">Placeholder Ingredients</span>
+      </p>
+      <p>
+        <strong data-i18n="healthValuesLabel">Health Values:</strong> 
+        <span id="popupHealth">Placeholder Health Values</span>
+      </p>
     </div>
   </div>
 
-  <!-- Scroll to Top Button -->
+  <!-- SCROLL TO TOP BUTTON -->
   <button id="scrollToTopBtn" class="scroll-to-top-btn">⬆️</button>
 
-  <!-- Contact Section -->
+  <!-- CONTACT SECTION -->
   <section id="contact">
     <h2 data-i18n="contactUs">Contact Us</h2>
     <p data-i18n="questions">Have questions? Reach out to us!</p>
@@ -287,14 +295,15 @@
     </div>
   </section>
 
-  <!-- Load Testimonials Content -->
+  <!-- LOAD TESTIMONIALS -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       fetch("public_testimonials.html")
         .then(response => response.text())
-        .then(data => document.getElementById("testimonials-container").innerHTML = data);
+        .then(data => {
+          document.getElementById("testimonials-container").innerHTML = data;
+        });
     });
   </script>
-
 </body>
 </html>
