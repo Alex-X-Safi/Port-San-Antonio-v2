@@ -3,21 +3,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar-menu");
 
   if (menuButton && sidebar) {
-    menuButton.addEventListener("click", () => {
-      // Toggle the open class to slide the sidebar in/out
+    // Toggle on button click
+    menuButton.addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent the "outside" click from immediately closing
       sidebar.classList.toggle("open");
+    });
+
+    // Close sidebar if user clicks outside of it
+    document.addEventListener("click", (e) => {
+      // If the sidebar is open AND the click is outside both the sidebar & button, close it
+      if (
+        sidebar.classList.contains("open") &&
+        !sidebar.contains(e.target) &&
+        e.target !== menuButton
+      ) {
+        sidebar.classList.remove("open");
+      }
     });
   }
 
-  // If you ONLY want the button to appear on mobile, use:
-  /*
-  window.addEventListener("resize", () => {
-    if (window.innerWidth < 768) {
-      menuButton.style.display = "block";
-    } else {
-      menuButton.style.display = "none";
-      sidebar.classList.remove("open");
-    }
-  });
-  */
+  // If you want the #navToggle arrow to do something, e.g., hide the entire <header>
+  const navToggle = document.getElementById("navToggle");
+  const header = document.querySelector("header");
+  if (navToggle && header) {
+    navToggle.addEventListener("click", () => {
+      header.classList.toggle("collapsed");
+      // Example: hide the nav entirely
+      // If you do this, add a CSS rule:
+      // header.collapsed nav { display: none; }
+    });
+  }
 });
