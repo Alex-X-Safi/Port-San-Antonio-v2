@@ -23,17 +23,16 @@
   <script src="sidebar.js" defer></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
-<body>
+<body id="content">
 
-  <!-- SEA ANIMATION LOADER (Optional) -->
-  <div class="sea-loader">
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <!-- Add logo or text here if desired -->
+  <!-- Sea Animation Loader -->
+  <div class="ocean-loader">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
   </div>
 
-  <!-- HEADER & NAV -->
+  <!-- Header and Navigation -->
   <header>
     <nav>
       <div class="logo" data-i18n="logo">Port San Antonio</div>
@@ -44,9 +43,7 @@
         <li><a href="#cta" data-i18n="cta">Call to Action</a></li>
         <li><a href="#contact" data-i18n="contact">Contact</a></li>
         <li><a href="#admin" data-i18n="admin">Admin</a></li>
-        <li>
-          <button id="darkModeToggle">🌙 <span data-i18n="darkMode">Dark Mode</span></button>
-        </li>
+        <li><button id="darkModeToggle">🌙 <span data-i18n="darkMode">Dark Mode</span></button></li>
         <li>
           <select id="languageSwitcher">
             <option value="en">English</option>
@@ -57,23 +54,26 @@
         <li><button id="login" data-i18n="login">Login</button></li>
         <li><button id="logout" data-i18n="logout" style="display:none;">Logout</button></li>
       </ul>
-      <!-- Three-Striped Menu Toggle Button -->
+      <!-- Menu Toggle Button -->
       <button class="menu-toggle">&#9776;</button>
     </nav>
   </header>
 
-  <!-- SIDEBAR (only one) -->
+  <!-- Navigation Toggle Button -->
+  <button id="navToggle" class="nav-toggle">&#x25B2;</button>
+
+  <!-- Sidebar -->
   <div class="sidebar-menu">
     <ul>
-      <li><a href="#">Reserve a Table</a></li>
-      <li><a href="#">Share on Facebook</a></li>
-      <li><a href="#">Share on Twitter</a></li>
-      <li><a href="#">Facebook</a></li>
-      <li><a href="#">Instagram</a></li>
+      <li><a href="#"><i class="fas fa-utensils"></i> Reserve a Table</a></li>
+      <li><a href="#"><i class="fab fa-facebook-f"></i> Share on Facebook</a></li>
+      <li><a href="#"><i class="fab fa-twitter"></i> Share on Twitter</a></li>
+      <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+      <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
     </ul>
   </div>
 
-  <!-- HERO SECTION -->
+  <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
       <h1 data-i18n="welcomeMessage">Welcome to Port San Antonio</h1>
@@ -82,8 +82,8 @@
     </div>
   </section>
 
-  <!-- MENU SECTION -->
-  <section id="menu">
+  <!-- Menu Section -->
+  <section id="menu" style="display: none;">
     <h2 data-i18n="ourMenu">Our Menu</h2>
     <div class="filter-container">
       <label for="filter" data-i18n="filter">Filter:</label>
@@ -96,7 +96,7 @@
       <button class="universal-sort-btn"><i class="fas fa-cogs"></i></button>
     </div>
     <div class="menu-container">
-      <!-- SANDWICHES -->
+      <!-- Sandwiches Category -->
       <div class="menu-category">
         <h3>
           <span data-i18n="sandwiches">Sandwiches</span>
@@ -111,10 +111,10 @@
           </div>
         </div>
         <div class="menu-items sandwiches">
-          <!-- Dynamic content loaded here -->
+          <!-- Dynamic content will be loaded here -->
         </div>
       </div>
-      <!-- SALADS -->
+      <!-- Salads Category -->
       <div class="menu-category">
         <h3>
           <span data-i18n="salads">Salads</span>
@@ -129,10 +129,10 @@
           </div>
         </div>
         <div class="menu-items salads">
-          <!-- Dynamic content loaded here -->
+          <!-- Dynamic content will be loaded here -->
         </div>
       </div>
-      <!-- MAIN DISHES -->
+      <!-- Main Dishes Category -->
       <div class="menu-category">
         <h3>
           <span data-i18n="mainDishes">Main Dishes</span>
@@ -147,10 +147,10 @@
           </div>
         </div>
         <div class="menu-items main-dishes">
-          <!-- Dynamic content loaded here -->
+          <!-- Dynamic content will be loaded here -->
         </div>
       </div>
-      <!-- DRINKS -->
+      <!-- Drinks Category -->
       <div class="menu-category">
         <h3>
           <span data-i18n="drinks">Drinks</span>
@@ -165,10 +165,10 @@
           </div>
         </div>
         <div class="menu-items drinks">
-          <!-- Dynamic content loaded here -->
+          <!-- Dynamic content will be loaded here -->
         </div>
       </div>
-      <!-- PLATTERS -->
+      <!-- Platters Category -->
       <div class="menu-category">
         <h3>
           <span data-i18n="platters">Platters</span>
@@ -183,10 +183,10 @@
           </div>
         </div>
         <div class="menu-items platters">
-          <!-- Dynamic content loaded here -->
+          <!-- Dynamic content will be loaded here -->
         </div>
       </div>
-      <!-- ALCOHOLIC & SIDES -->
+      <!-- Alcoholic Drinks & Sides Category -->
       <div class="menu-category">
         <h3>
           <span data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</span>
@@ -201,38 +201,50 @@
           </div>
         </div>
         <div class="menu-items alcoholic">
-          <!-- Dynamic content loaded here -->
+          <!-- Dynamic content will be loaded here -->
         </div>
       </div>
-    </div>
+    </div> <!-- End of menu-container -->
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
+  <!-- Testimonials Section -->
+  <section id="testimonials" style="display: none;">
     <h2 data-i18n="testimonials">Testimonials</h2>
     <div id="testimonials-container">
-      <!-- public_testimonials.html will load here -->
+      <!-- Dynamic content will be loaded from public_testimonials.html -->
     </div>
+
+    <!-- Leave a Testimonial -->
+    <h3>Leave a Testimonial</h3>
+    <form id="testimonialForm">
+      <label for="testimonialName">Name:</label>
+      <input type="text" id="testimonialName" required />
+
+      <label for="testimonialMessage">Your Testimonial:</label>
+      <textarea id="testimonialMessage" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
   </section>
 
-  <!-- CTA -->
-  <section id="cta">
+  <!-- Call to Action (CTA) Section -->
+  <section id="cta" style="display: none;">
     <h2 data-i18n="ctaTitle">Join Our Newsletter</h2>
     <p data-i18n="ctaText">Subscribe to receive the latest updates and offers.</p>
     <button onclick="ctaFunction()" data-i18n="subscribeButton">Subscribe</button>
   </section>
 
-  <!-- ADMIN DASHBOARD -->
+  <!-- Admin Dashboard Section -->
   <section id="admin" style="display: none;">
     <h2 data-i18n="adminDashboard">Admin Dashboard</h2>
     <div class="admin-container">
       <form id="adminForm">
         <label for="name" data-i18n="itemName">Item Name:</label>
-        <input type="text" id="name" name="name" required/>
-
+        <input type="text" id="name" name="name" required>
+        
         <label for="price" data-i18n="price">Price:</label>
-        <input type="number" id="price" name="price" required/>
-
+        <input type="number" id="price" name="price" required>
+        
         <label for="category" data-i18n="category">Category:</label>
         <select id="category" name="category" required>
           <option value="sandwiches" data-i18n="sandwiches">Sandwiches</option>
@@ -242,49 +254,40 @@
           <option value="platters" data-i18n="platters">Platters</option>
           <option value="alcoholic" data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</option>
         </select>
-
+        
         <label for="image" data-i18n="imageUrl">Image URL:</label>
-        <input type="text" id="image" name="image" required/>
-
+        <input type="text" id="image" name="image" required>
+        
         <label for="ingredients" data-i18n="ingredients">Ingredients:</label>
         <textarea id="ingredients" name="ingredients" required></textarea>
-
+        
         <label for="health" data-i18n="healthInfo">Health Info:</label>
         <textarea id="health" name="health" required></textarea>
-
+        
         <button type="submit" data-i18n="addItem">Add Item</button>
       </form>
     </div>
   </section>
 
-  <!-- FOOD ITEM POPUP -->
+  <!-- Food Item Popup -->
   <div id="foodPopup" class="popup hidden">
     <div class="popup-content">
       <span class="close-popup">&times;</span>
       <!-- Popup Navigation Arrows -->
       <button id="popupPrev">&#10094;</button>
       <button id="popupNext">&#10095;</button>
-      <img id="popupImage" src="images/placeholder.jpg" alt="Food Image"/>
+      <img id="popupImage" src="images/placeholder.jpg" alt="Food Image">
       <h2 id="popupName">Food Name</h2>
-      <p>
-        <strong data-i18n="priceLabel">Price:</strong> 
-        <span id="popupPrice">$0</span>
-      </p>
-      <p>
-        <strong data-i18n="ingredientsLabel">Ingredients:</strong> 
-        <span id="popupIngredients">Placeholder Ingredients</span>
-      </p>
-      <p>
-        <strong data-i18n="healthValuesLabel">Health Values:</strong> 
-        <span id="popupHealth">Placeholder Health Values</span>
-      </p>
+      <p><strong data-i18n="priceLabel">Price:</strong> <span id="popupPrice">$0</span></p>
+      <p><strong data-i18n="ingredientsLabel">Ingredients:</strong> <span id="popupIngredients">Placeholder Ingredients</span></p>
+      <p><strong data-i18n="healthValuesLabel">Health Values:</strong> <span id="popupHealth">Placeholder Health Values</span></p>
     </div>
   </div>
 
-  <!-- SCROLL TO TOP BUTTON -->
+  <!-- Scroll to Top Button -->
   <button id="scrollToTopBtn" class="scroll-to-top-btn">⬆️</button>
 
-  <!-- CONTACT SECTION -->
+  <!-- Contact Section -->
   <section id="contact">
     <h2 data-i18n="contactUs">Contact Us</h2>
     <p data-i18n="questions">Have questions? Reach out to us!</p>
@@ -295,15 +298,39 @@
     </div>
   </section>
 
-  <!-- LOAD TESTIMONIALS -->
+  <!-- Load Testimonials Content -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Load external testimonials
       fetch("public_testimonials.html")
         .then(response => response.text())
-        .then(data => {
-          document.getElementById("testimonials-container").innerHTML = data;
-        });
+        .then(data => document.getElementById("testimonials-container").innerHTML = data);
+
+      // Simple testimonial form handling (no real backend)
+      const testimonialForm = document.getElementById("testimonialForm");
+      const testimonialsContainer = document.getElementById("testimonials-container");
+
+      testimonialForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("testimonialName").value.trim();
+        const message = document.getElementById("testimonialMessage").value.trim();
+
+        if (name && message) {
+          // Create a new testimonial element
+          const newTestimonial = document.createElement("div");
+          newTestimonial.classList.add("testimonial");
+          newTestimonial.innerHTML = `
+            <p>"${message}"</p>
+            <span>- ${name}</span>
+          `;
+          testimonialsContainer.appendChild(newTestimonial);
+
+          // Reset the form
+          testimonialForm.reset();
+        }
+      });
     });
   </script>
+
 </body>
 </html>
