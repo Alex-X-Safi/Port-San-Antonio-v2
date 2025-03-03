@@ -22,6 +22,17 @@
   <script src="public_social-media.js" defer></script>
   <script src="sidebar.js" defer></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- You can include a helper script for smooth scrolling -->
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    // Define a dummy ctaFunction() that scrolls to the CTA section.
+    function ctaFunction() {
+      scrollToSection('cta');
+    }
+  </script>
 </head>
 <body id="content">
 
@@ -37,12 +48,12 @@
     <nav>
       <div class="logo" data-i18n="logo">Port San Antonio</div>
       <ul>
-        <li><a href="#home" data-i18n="home">Home</a></li>
-        <li><a href="#menu" data-i18n="menu">Menu</a></li>
-        <li><a href="#testimonials" data-i18n="testimonials">Testimonials</a></li>
-        <li><a href="#cta" data-i18n="cta">Call to Action</a></li>
-        <li><a href="#contact" data-i18n="contact">Contact</a></li>
-        <li><a href="#admin" data-i18n="admin">Admin</a></li>
+        <li><a href="#home" onclick="scrollToSection('home')" data-i18n="home">Home</a></li>
+        <li><a href="#menu" onclick="scrollToSection('menu')" data-i18n="menu">Menu</a></li>
+        <li><a href="#testimonials" onclick="scrollToSection('testimonials')" data-i18n="testimonials">Testimonials</a></li>
+        <li><a href="#cta" onclick="scrollToSection('cta')" data-i18n="cta">Call to Action</a></li>
+        <li><a href="#contact" onclick="scrollToSection('contact')" data-i18n="contact">Contact</a></li>
+        <li><a href="#admin" onclick="scrollToSection('admin')" data-i18n="admin">Admin</a></li>
         <li><button id="darkModeToggle">🌙 <span data-i18n="darkMode">Dark Mode</span></button></li>
         <li>
           <select id="languageSwitcher">
@@ -78,7 +89,7 @@
     <div class="hero-content">
       <h1 data-i18n="welcomeMessage">Welcome to Port San Antonio</h1>
       <p data-i18n="subMessage">Experience the finest flavors by the sea</p>
-      <a href="#menu" class="explore-btn" data-i18n="exploreMenu">Explore Menu</a>
+      <a href="#menu" class="explore-btn" onclick="scrollToSection('menu')" data-i18n="exploreMenu">Explore Menu</a>
     </div>
   </section>
 
@@ -219,10 +230,8 @@
     <form id="testimonialForm">
       <label for="testimonialName">Name:</label>
       <input type="text" id="testimonialName" required />
-
       <label for="testimonialMessage">Your Testimonial:</label>
       <textarea id="testimonialMessage" required></textarea>
-
       <button type="submit">Submit</button>
     </form>
   </section>
