@@ -3,34 +3,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar-menu");
 
   if (menuButton && sidebar) {
-    // Toggle on button click
+    // Toggle sidebar on button click
     menuButton.addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent the "outside" click from immediately closing
+      e.stopPropagation(); // Prevent click from bubbling to document
       sidebar.classList.toggle("open");
     });
 
-    // Close sidebar if user clicks outside of it
+    // Close sidebar if click happens outside of it
     document.addEventListener("click", (e) => {
-      // If the sidebar is open AND the click is outside both the sidebar & button, close it
-      if (
-        sidebar.classList.contains("open") &&
-        !sidebar.contains(e.target) &&
-        e.target !== menuButton
-      ) {
+      if (sidebar.classList.contains("open") && !sidebar.contains(e.target) && e.target !== menuButton) {
         sidebar.classList.remove("open");
       }
     });
   }
 
-  // If you want the #navToggle arrow to do something, e.g., hide the entire <header>
+  // Optional: If you want the #navToggle arrow to toggle the header visibility:
   const navToggle = document.getElementById("navToggle");
   const header = document.querySelector("header");
   if (navToggle && header) {
     navToggle.addEventListener("click", () => {
       header.classList.toggle("collapsed");
-      // Example: hide the nav entirely
-      // If you do this, add a CSS rule:
-      // header.collapsed nav { display: none; }
+      // Add a CSS rule for header.collapsed if needed.
     });
   }
 });
