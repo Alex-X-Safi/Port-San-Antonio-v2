@@ -23,8 +23,17 @@
   <script src="sidebar.js" defer></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
-<body id="content">
-  <!-- Header and Navigation (only one header) -->
+<body>
+
+  <!-- Sea Animation Loader (Optional) -->
+  <div class="sea-loader">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <!-- You can add a logo or text here if you want -->
+  </div>
+
+  <!-- Header and Navigation -->
   <header>
     <nav>
       <div class="logo" data-i18n="logo">Port San Antonio</div>
@@ -51,7 +60,7 @@
     </nav>
   </header>
 
-  <!-- Sidebar (moved outside nav) -->
+  <!-- Sidebar -->
   <div class="sidebar-menu">
     <ul>
       <li><a href="#">Reserve a Table</a></li>
@@ -62,41 +71,7 @@
     </ul>
   </div>
 
-  <!-- Navigation Bar -->
-  <header>
-    <nav>
-      <div class="logo" data-i18n="logo">Port San Antonio</div>
-      <ul>
-        <li><a href="#home" data-i18n="home">Home</a></li>
-        <li><a href="#menu" data-i18n="menu">Menu</a></li>
-        <li><a href="#testimonials" data-i18n="testimonials">Testimonials</a></li> <!-- New Link -->
-        <li><a href="#cta" data-i18n="cta">Call to Action</a></li>         <!-- New Link -->
-        <li><a href="#contact" data-i18n="contact">Contact</a></li>
-        <li><a href="#admin" data-i18n="admin">Admin</a></li>
-        <button id="darkModeToggle">🌙 <span data-i18n="darkMode">Dark Mode</span></button>
-        <select id="languageSwitcher">
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="ar">العربية</option>
-        </select>
-        <li><button id="login" data-i18n="login">Login</button></li>
-        <li><button id="logout" data-i18n="logout" style="display:none;">Logout</button></li>
-      </ul>
-      <button class="menu-toggle">&#9776;</button>
-      <div class="sidebar-menu">
-        <ul>
-         <li><a href="#">Reserve a Table</a></li>
-         <li><a href="#">Share on Facebook</a></li>
-         <li><a href="#">Share on Twitter</a></li>
-         <li><a href="#">Facebook</a></li>
-         <li><a href="#">Instagram</a></li>
-       </ul>
-</div>
-
-    </nav>
-  </header>
-
-  <!-- Navigation Toggle Button (placed outside the header so it stays visible) -->
+  <!-- Navigation Toggle Button -->
   <button id="navToggle" class="nav-toggle">&#x25B2;</button>
 
   <!-- Hero Section -->
@@ -109,7 +84,7 @@
   </section>
 
   <!-- Menu Section -->
-  <section id="menu" style="display: none;">
+  <section id="menu">
     <h2 data-i18n="ourMenu">Our Menu</h2>
     <div class="filter-container">
       <label for="filter" data-i18n="filter">Filter:</label>
@@ -234,7 +209,7 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section id="testimonials" style="display: none;">
+  <section id="testimonials">
     <h2 data-i18n="testimonials">Testimonials</h2>
     <div id="testimonials-container">
       <!-- Dynamic content will be loaded from public_testimonials.html -->
@@ -242,7 +217,7 @@
   </section>
 
   <!-- Call to Action (CTA) Section -->
-  <section id="cta" style="display: none;">
+  <section id="cta">
     <h2 data-i18n="ctaTitle">Join Our Newsletter</h2>
     <p data-i18n="ctaText">Subscribe to receive the latest updates and offers.</p>
     <button onclick="ctaFunction()" data-i18n="subscribeButton">Subscribe</button>
