@@ -23,12 +23,12 @@
   <script src="sidebar.js" defer></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- You can include a helper script for smooth scrolling -->
+  <!-- Helper script for smooth scrolling -->
   <script>
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
-    // Define a dummy ctaFunction() that scrolls to the CTA section.
+    // Dummy ctaFunction that scrolls to CTA
     function ctaFunction() {
       scrollToSection('cta');
     }
@@ -70,9 +70,6 @@
     </nav>
   </header>
 
-  <!-- Navigation Toggle Button -->
-  <button id="navToggle" class="nav-toggle">&#x25B2;</button>
-
   <!-- Sidebar -->
   <div class="sidebar-menu">
     <ul>
@@ -84,6 +81,10 @@
     </ul>
   </div>
 
+  <!-- (Optional) Navigation Toggle Button -->
+  <!-- Remove or adjust if it conflicts with the sidebar -->
+  <!-- <button id="navToggle" class="nav-toggle">&#x25B2;</button> -->
+
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
@@ -94,7 +95,7 @@
   </section>
 
   <!-- Menu Section -->
-  <section id="menu" style="display: none;">
+  <section id="menu">
     <h2 data-i18n="ourMenu">Our Menu</h2>
     <div class="filter-container">
       <label for="filter" data-i18n="filter">Filter:</label>
@@ -215,21 +216,20 @@
           <!-- Dynamic content will be loaded here -->
         </div>
       </div>
-    </div> <!-- End of menu-container -->
+    </div>
   </section>
 
   <!-- Testimonials Section -->
-  <section id="testimonials" style="display: none;">
+  <section id="testimonials">
     <h2 data-i18n="testimonials">Testimonials</h2>
     <div id="testimonials-container">
-      <!-- Dynamic content will be loaded from public_testimonials.html -->
+      <!-- External testimonials loaded here -->
     </div>
-
     <!-- Leave a Testimonial -->
     <h3>Leave a Testimonial</h3>
     <form id="testimonialForm">
       <label for="testimonialName">Name:</label>
-      <input type="text" id="testimonialName" required />
+      <input type="text" id="testimonialName" required>
       <label for="testimonialMessage">Your Testimonial:</label>
       <textarea id="testimonialMessage" required></textarea>
       <button type="submit">Submit</button>
@@ -237,23 +237,21 @@
   </section>
 
   <!-- Call to Action (CTA) Section -->
-  <section id="cta" style="display: none;">
+  <section id="cta">
     <h2 data-i18n="ctaTitle">Join Our Newsletter</h2>
     <p data-i18n="ctaText">Subscribe to receive the latest updates and offers.</p>
     <button onclick="ctaFunction()" data-i18n="subscribeButton">Subscribe</button>
   </section>
 
   <!-- Admin Dashboard Section -->
-  <section id="admin" style="display: none;">
+  <section id="admin">
     <h2 data-i18n="adminDashboard">Admin Dashboard</h2>
     <div class="admin-container">
       <form id="adminForm">
         <label for="name" data-i18n="itemName">Item Name:</label>
         <input type="text" id="name" name="name" required>
-        
         <label for="price" data-i18n="price">Price:</label>
         <input type="number" id="price" name="price" required>
-        
         <label for="category" data-i18n="category">Category:</label>
         <select id="category" name="category" required>
           <option value="sandwiches" data-i18n="sandwiches">Sandwiches</option>
@@ -263,16 +261,12 @@
           <option value="platters" data-i18n="platters">Platters</option>
           <option value="alcoholic" data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</option>
         </select>
-        
         <label for="image" data-i18n="imageUrl">Image URL:</label>
         <input type="text" id="image" name="image" required>
-        
         <label for="ingredients" data-i18n="ingredients">Ingredients:</label>
         <textarea id="ingredients" name="ingredients" required></textarea>
-        
         <label for="health" data-i18n="healthInfo">Health Info:</label>
         <textarea id="health" name="health" required></textarea>
-        
         <button type="submit" data-i18n="addItem">Add Item</button>
       </form>
     </div>
@@ -282,7 +276,6 @@
   <div id="foodPopup" class="popup hidden">
     <div class="popup-content">
       <span class="close-popup">&times;</span>
-      <!-- Popup Navigation Arrows -->
       <button id="popupPrev">&#10094;</button>
       <button id="popupNext">&#10095;</button>
       <img id="popupImage" src="images/placeholder.jpg" alt="Food Image">
@@ -307,7 +300,7 @@
     </div>
   </section>
 
-  <!-- Load Testimonials Content -->
+  <!-- Load Testimonials Content and Handle Testimonial Form -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Load external testimonials
@@ -315,17 +308,14 @@
         .then(response => response.text())
         .then(data => document.getElementById("testimonials-container").innerHTML = data);
 
-      // Simple testimonial form handling (no real backend)
+      // Testimonial form handling (no backend)
       const testimonialForm = document.getElementById("testimonialForm");
       const testimonialsContainer = document.getElementById("testimonials-container");
-
       testimonialForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const name = document.getElementById("testimonialName").value.trim();
         const message = document.getElementById("testimonialMessage").value.trim();
-
         if (name && message) {
-          // Create a new testimonial element
           const newTestimonial = document.createElement("div");
           newTestimonial.classList.add("testimonial");
           newTestimonial.innerHTML = `
@@ -333,8 +323,6 @@
             <span>- ${name}</span>
           `;
           testimonialsContainer.appendChild(newTestimonial);
-
-          // Reset the form
           testimonialForm.reset();
         }
       });
