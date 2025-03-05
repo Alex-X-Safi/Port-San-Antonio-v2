@@ -608,4 +608,16 @@ document.addEventListener("DOMContentLoaded", () => {
     <a href="https://www.instagram.com/abouphilippe_portantonio" target="_blank">Instagram</a>
   `;
   document.body.appendChild(socialLinks);
+
+  //Navigation panel toggle arrow
+  document.getElementById('navToggle').addEventListener('click', function() {
+    const header = document.querySelector('header');
+    // Check if the header is currently hidden
+    if (getComputedStyle(header).display === 'none') {
+      header.style.display = 'block';
+      this.innerHTML = '&#x25B2;'; // Up arrow: header is visible, click to hide
+    } else {
+      header.style.display = 'none';
+      this.innerHTML = '&#x25BC;'; // Down arrow: header is hidden, click to show
+    }
 });
