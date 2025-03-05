@@ -28,7 +28,7 @@
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
-    // Dummy ctaFunction that scrolls to CTA
+    // Dummy ctaFunction that scrolls to the CTA section
     function ctaFunction() {
       scrollToSection('cta');
     }
@@ -36,7 +36,7 @@
 </head>
 <body id="content">
 
-  <!-- Sea Animation Loader -->
+  <!-- Ocean Loader with Waves -->
   <div class="ocean-loader">
     <div class="wave wave1"></div>
     <div class="wave wave2"></div>
@@ -65,12 +65,12 @@
         <li><button id="login" data-i18n="login">Login</button></li>
         <li><button id="logout" data-i18n="logout" style="display:none;">Logout</button></li>
       </ul>
-      <!-- Menu Toggle Button -->
+      <!-- Menu Toggle Button (Three-Striped Icon) -->
       <button class="menu-toggle">&#9776;</button>
     </nav>
   </header>
 
-  <!-- Sidebar -->
+  <!-- Sidebar (Only one instance) -->
   <div class="sidebar-menu">
     <ul>
       <li><a href="#"><i class="fas fa-utensils"></i> Reserve a Table</a></li>
@@ -81,8 +81,7 @@
     </ul>
   </div>
 
-  <!-- (Optional) Navigation Toggle Button -->
-  <!-- Remove or adjust if it conflicts with the sidebar -->
+  <!-- (Optional) Navigation Arrow Toggle Button (commented out) -->
   <!-- <button id="navToggle" class="nav-toggle">&#x25B2;</button> -->
 
   <!-- Hero Section -->
@@ -225,7 +224,6 @@
     <div id="testimonials-container">
       <!-- External testimonials loaded here -->
     </div>
-    <!-- Leave a Testimonial -->
     <h3>Leave a Testimonial</h3>
     <form id="testimonialForm">
       <label for="testimonialName">Name:</label>
