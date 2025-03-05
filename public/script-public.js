@@ -482,24 +482,22 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 1500);
     });
     itemElement.addEventListener("mouseup", function () {
-            itemElement.addEventListener("mouseup", function () {
-        clearTimeout(pressTimer);
-        itemElement.classList.remove("long-pressing");
-      });
-      itemElement.addEventListener("mouseleave", function () {
-        clearTimeout(pressTimer);
-        itemElement.classList.remove("long-pressing");
-      });
-      itemElement.addEventListener("touchend", function () {
-        let currentTime = new Date().getTime();
-        let tapLength = currentTime - lastTap;
-        clearTimeout(pressTimer);
-        itemElement.classList.remove("long-pressing");
-        if (tapLength < 500 && tapLength > 0) {
-          openPopup(itemElement);
-        }
-        lastTap = currentTime;
-      });
+      clearTimeout(pressTimer);
+      itemElement.classList.remove("long-pressing");
+    });
+    itemElement.addEventListener("mouseleave", function () {
+      clearTimeout(pressTimer);
+      itemElement.classList.remove("long-pressing");
+    });
+    itemElement.addEventListener("touchend", function () {
+      let currentTime = new Date().getTime();
+      let tapLength = currentTime - lastTap;
+      clearTimeout(pressTimer);
+      itemElement.classList.remove("long-pressing");
+      if (tapLength < 500 && tapLength > 0) {
+        openPopup(itemElement);
+      }
+      lastTap = currentTime;
     });
   }
 
