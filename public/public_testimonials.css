@@ -21,3 +21,39 @@
     margin-top: 10px;
     color: #555;
 }
+
+/* New Testimonial Form Styling */
+#testimonialFormContainer.hidden {
+    display: none;
+}
+#testimonialFormContainer {
+    animation: fadeIn 1s ease-in-out;
+}
+#testimonialForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#testimonialForm label {
+    font-size: 1rem;
+    color: #333;
+}
+#testimonialForm input,
+#testimonialForm textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+#testimonialForm button {
+    padding: 10px;
+    background: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+#testimonialForm button:hover {
+    background: #005f8e;
+}
