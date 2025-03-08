@@ -678,3 +678,76 @@ nav ul li button,
 #testimonialForm button:hover {
   background: #005f8e;
 }
+
+/* Additional Animations */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-200deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Applying New Animations */
+.hero-content {
+  animation: zoomIn 1s ease-in-out;
+}
+
+.explore-btn {
+  animation: bounceIn 1s ease-in-out;
+}
+
+.menu-category {
+  animation: slideInLeft 1s ease-in-out;
+}
+
+.testimonials {
+  animation: slideInRight 1s ease-in-out;
+}
