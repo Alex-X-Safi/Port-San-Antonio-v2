@@ -421,68 +421,67 @@ document.addEventListener("DOMContentLoaded", function () {
     touchStartX = null;
   });
 
-  // Handle Form Submission in the Admin Dashboard
-  const adminForm = document.getElementById("adminForm");
-  if (adminForm) {
-    adminForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const price = document.getElementById("price").value;
-      const category = document.getElementById("category").value;
-      const image = document.getElementById("image").value;
-      const ingredients = document.getElementById("ingredients").value;
-      const health = document.getElementById("health").value;
-      const newItem = { name, price, category, image, ingredients, health };
-      addItem(newItem);
-      adminForm.reset();
-    });
-  }
+ // Handle Form Submission in the Admin Dashboard
+const adminForm = document.getElementById("adminForm");
+if (adminForm) {
+  adminForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const price = document.getElementById("price").value;
+    const category = document.getElementById("category").value;
+    const image = document.getElementById("image").value;
+    const ingredients = document.getElementById("ingredients").value;
+    const health = document.getElementById("health").value;
+    const newItem = { name, price, category, image, ingredients, health };
+    addItem(newItem);
+    adminForm.reset();
+  });
+}
 
-  function addItem(item) {
-    const container = document.querySelector(`.${item.category}`);
-    const itemElement = document.createElement("div");
-    itemElement.classList.add("menu-item");
-    itemElement.setAttribute("data-name", item.name);
-    itemElement.setAttribute("data-price", item.price);
-    itemElement.setAttribute("data-image", item.image);
-    itemElement.setAttribute("data-ingredients", item.ingredients);
-    itemElement.setAttribute("data-health", item.health);
-    itemElement.innerHTML = `
-      <img src="${item.image}" alt="${item.name}">
-      <p><span data-i18n="${item.name.replace(/ /g, "")}">${item.name}</span> – <span>$${item.price}</span></p>
-    `;
-    container.appendChild(itemElement);
-    // Re-apply long press events for the new item.
-    itemElement.addEventListener("mousedown", function () {
-      itemElement.classList.add("long-pressing");
-      pressTimer = setTimeout(() => {
-        openPopup(itemElement);
-        itemElement.classList.remove("long-pressing");
-      }, 1500);
-    });
-    itemElement.addEventListener("mouseup", function () {
-      clearTimeout(pressTimer);
+function addItem(item) {
+  const container = document.querySelector(`.${item.category}`);
+  const itemElement = document.createElement("div");
+  itemElement.classList.add("menu-item");
+  itemElement.setAttribute("data-name", item.name);
+  itemElement.setAttribute("data-price", item.price);
+  itemElement.setAttribute("data-image", item.image);
+  itemElement.setAttribute("data-ingredients", item.ingredients);
+  itemElement.setAttribute("data-health", item.health);
+  itemElement.innerHTML = `
+    <img src="${item.image}" alt="${item.name}">
+    <p><span data-i18n="${item.name.replace(/ /g, "")}">${item.name}</span> – <span>$${item.price}</span></p>
+  `;
+  container.appendChild(itemElement);
+  // Re-apply long press events for the new item.
+  itemElement.addEventListener("mousedown", function () {
+    itemElement.classList.add("long-pressing");
+    pressTimer = setTimeout(() => {
+      openPopup(itemElement);
       itemElement.classList.remove("long-pressing");
-    });
-    itemElement.addEventListener("mouseleave", function () {
-      clearTimeout(pressTimer);
-      itemElement.classList.remove("long-pressing");
-    });
-    itemElement.addEventListener("touchend", function () {
-      let currentTime = new Date().getTime();
-      let tapLength = currentTime - lastTap;
-      clearTimeout(pressTimer);
-      itemElement.classList.remove("long-pressing");
-      if (tapLength < 500 && tapLength > 0) {
-        openPopup(itemElement);
-      }
-      lastTap = currentTime;
-    });
-  }
+    }, 1500);
+  });
+  itemElement.addEventListener("mouseup", function () {
+    clearTimeout(pressTimer);
+    itemElement.classList.remove("long-pressing");
+  });
+  itemElement.addEventListener("mouseleave", function () {
+    clearTimeout(pressTimer);
+    itemElement.classList.remove("long-pressing");
+  });
+  itemElement.addEventListener("touchend", function () {
+    let currentTime = new Date().getTime();
+    let tapLength = currentTime - lastTap;
+    clearTimeout(pressTimer);
+    itemElement.classList.remove("long-pressing");
+    if (tapLength < 500 && tapLength > 0) {
+      openPopup(itemElement);
+    }
+    lastTap = currentTime;
+  });
+}
 
- // Initial Load
+// Initial Load
 loadMenu();
-});
 
 document.getElementById('navToggle').addEventListener('click', function() {
   const header = document.querySelector('header');
@@ -496,107 +495,10 @@ document.getElementById('navToggle').addEventListener('click', function() {
   }
 });
 
-// SEO Enhancements
+// Remove unnecessary content at the bottom of the website
 document.addEventListener("DOMContentLoaded", () => {
-  let metaDescription = document.createElement("meta");
-  metaDescription.name = "description";
-  metaDescription.content = "Abou Philippe Restaurant is a premier beach resort located at Port Antonio Building, Sea Road, Mastita, Jbeil, Lebanon – offering exquisite dining, breathtaking views, and top-notch services.";
-  document.head.appendChild(metaDescription);
-
-  let metaKeywords = document.createElement("meta");
-  metaKeywords.name = "keywords";
-  metaKeywords.content = "Abou Philippe, Port Antonio, beach resort, Jbeil, Mastita, Lebanon, restaurant, seafood, dining";
-  document.head.appendChild(metaKeywords);
-
-  let script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.text = JSON.stringify({
-    "@context": "http://schema.org",
-    "@type": "Restaurant",
-    "name": "Abou Philippe Restaurant",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Port Antonio Building, Sea Road",
-      "addressLocality": "Mastita, Jbeil",
-      "addressRegion": "Mount Lebanon",
-      "postalCode": "00961",
-      "addressCountry": "LB"
-    },
-    "telephone": "+96109796226",
-    "url": "http://www.abouphilippe.com",
-    "servesCuisine": "Seafood, Mediterranean"
-  });
-  document.head.appendChild(script);
-});
-
-// CTA Functionality
-document.addEventListener("DOMContentLoaded", () => {
-  let orderButtons = document.querySelectorAll(".order-now");
-  orderButtons.forEach(button => {
-    button.classList.add("cta-button");
-  });
-
-  let floatingButton = document.createElement("div");
-  floatingButton.classList.add("floating-button");
-  floatingButton.innerText = "Reserve a Table";
-  floatingButton.addEventListener("click", () => {
-    window.location.href = "http://www.abouphilippe.com/reserve";
-  });
-  document.body.appendChild(floatingButton);
-});
-
-// Social Media Integration
-document.addEventListener("DOMContentLoaded", () => {
-  let shareButtons = document.createElement("div");
-  shareButtons.classList.add("share-buttons");
-
-  let facebookButton = document.createElement("a");
-  facebookButton.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href);
-  facebookButton.innerText = "Share on Facebook";
-  shareButtons.appendChild(facebookButton);
-
-  let twitterButton = document.createElement("a");
-  twitterButton.href = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(window.location.href);
-  twitterButton.innerText = "Share on Twitter";
-  shareButtons.appendChild(twitterButton);
-
-  let instagramFeed = document.createElement("div");
-  instagramFeed.id = "instagram-feed";
-  shareButtons.appendChild(instagramFeed);
-
-  document.body.appendChild(shareButtons);
-
-  fetch("https://api.instagram.com/v1/users/self/media/recent/?access_token=YOUR_ACCESS_TOKEN")
-    .then(response => response.json())
-    .then(data => {
-      let feed = document.getElementById("instagram-feed");
-      data.data.forEach(post => {
-        let img = document.createElement("img");
-        img.src = post.images.thumbnail.url;
-        img.alt = "Instagram post image";
-        feed.appendChild(img);
-      });
-    })
-    .catch(error => console.error("Error fetching Instagram feed:", error));
-
-  let socialLinks = document.createElement("div");
-  socialLinks.classList.add("social-links");
-  socialLinks.innerHTML = `
-    <a href="https://www.facebook.com/portantoniolb" target="_blank">Facebook</a>
-    <a href="https://www.instagram.com/abouphilippe_portantonio" target="_blank">Instagram</a>
-  `;
-  document.body.appendChild(socialLinks);
-
-  // Navigation panel toggle arrow
-  document.getElementById('navToggle').addEventListener('click', function() {
-    const header = document.querySelector('header');
-    // Check if the header is currently hidden
-    if (getComputedStyle(header).display === 'none') {
-      header.style.display = 'block';
-      this.innerHTML = '&#x25B2;'; // Up arrow: header is visible, click to hide
-    } else {
-      header.style.display = 'none';
-      this.innerHTML = '&#x25BC;'; // Down arrow: header is hidden, click to show
-    }
-  });
+  const footer = document.querySelector('footer');
+  if (footer) {
+    footer.innerHTML = ''; // Clear the footer content
+  }
 });
