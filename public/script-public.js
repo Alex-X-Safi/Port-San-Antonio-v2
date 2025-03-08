@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const categories = ["sandwiches", "salads", "main-dishes", "drinks", "platters", "alcoholic"];
       for (const category of categories) {
         const response = await fetch(`/data/menu/${category}.json`);
+        if (!response.ok) throw new Error(`Failed to fetch ${category}`);
         const items = await response.json();
         renderCategory(category, items);
       }
@@ -156,27 +157,35 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!currentPopupItem) return;
     let currentIndex = items.indexOf(currentPopupItem);
     let newIndex = (currentIndex + direction + items.length) % items.length;
-    openPopup(items[newIndex]);
+    if (items[newIndex]) {
+      openPopup(items[newIndex]);
+    }
   }
 
   // ------------------------------
   // Scroll Management
   window.addEventListener("scroll", () => {
-    scrollToTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    if (scrollToTopBtn) {
+      scrollToTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    }
   });
-  scrollToTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
   // ------------------------------
   // Language Management & i18next Initialization
-  languageSwitcher.addEventListener("change", function () {
-    const selectedLanguage = this.value;
-    i18next.changeLanguage(selectedLanguage, function (err, t) {
-      if (err) return console.error(err);
-      updateContent();
+  if (languageSwitcher) {
+    languageSwitcher.addEventListener("change", function () {
+      const selectedLanguage = this.value;
+      i18next.changeLanguage(selectedLanguage, function (err, t) {
+        if (err) return console.error(err);
+        updateContent();
+      });
     });
-  });
+  }
   i18next
     .use(i18nextHttpBackend)
     .use(i18nextBrowserLanguageDetector)
@@ -381,36 +390,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ------------------------------
-  // Popup and Long Press Handling for Dynamically Loaded Items
-  document.querySelectorAll(".menu-item").forEach(item => {
-    item.addEventListener("mousedown", function () {
-      item.classList.add("long-pressing");
-      pressTimer = setTimeout(() => {
-        openPopup(item);
-        item.classList.remove("long-pressing");
-      }, 1500);
-    });
-    item.addEventListener("mouseup", function () {
-      clearTimeout(pressTimer);
-      item.classList.remove("long-pressing");
-    });
-    item.addEventListener("mouseleave", function () {
-      clearTimeout(pressTimer);
-      item.classList.remove("long-pressing");
-    });
-    item.addEventListener("touchend", function () {
-      let currentTime = new Date().getTime();
-      let tapLength = currentTime - lastTap;
-      clearTimeout(pressTimer);
-      item.classList.remove("long-pressing");
-      if (tapLength < 500 && tapLength > 0) {
-        openPopup(item);
-      }
-      lastTap = currentTime;
-    });
-  });
-
-  // ------------------------------
+  // Popup and Long Press
   // Popup Close Functionality
   document.querySelector(".close-popup").addEventListener("click", function () {
     document.getElementById("foodPopup").classList.remove("show");
@@ -441,7 +421,6 @@ document.addEventListener("DOMContentLoaded", function () {
     touchStartX = null;
   });
 
-  // ------------------------------
   // Handle Form Submission in the Admin Dashboard
   const adminForm = document.getElementById("adminForm");
   if (adminForm) {
@@ -501,7 +480,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ------------------------------
   // Initial Load
   loadMenu();
 });
@@ -609,7 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.body.appendChild(socialLinks);
 
-  //Navigation panel toggle arrow
+  // Navigation panel toggle arrow
   document.getElementById('navToggle').addEventListener('click', function() {
     const header = document.querySelector('header');
     // Check if the header is currently hidden
@@ -620,4 +598,5 @@ document.addEventListener("DOMContentLoaded", () => {
       header.style.display = 'none';
       this.innerHTML = '&#x25BC;'; // Down arrow: header is hidden, click to show
     }
+  });
 });
