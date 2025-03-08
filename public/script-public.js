@@ -480,8 +480,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-    // Initial Load
-  loadMenu();
+ // Initial Load
+loadMenu();
 });
 
 document.getElementById('navToggle').addEventListener('click', function() {
