@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add meta tags
     let metaDescription = document.createElement("meta");
     metaDescription.name = "description";
-    metaDescription.content = "Abou Philippe Restaurant is a premier beach resort located at Port Antonio Building, Sea Road, Mastita, Jbeil, Lebanon – offering exquisite dining, breathtaking views, and exceptional service.";
+    metaDescription.content = "Port San Antonio is a premier beach resort offering exquisite dining, breathtaking views, and top-notch services.";
     document.head.appendChild(metaDescription);
 
     let metaKeywords = document.createElement("meta");
     metaKeywords.name = "keywords";
-    metaKeywords.content = "Abou Philippe, Port Antonio, beach resort, Jbeil, Mastita, Lebanon, restaurant, seafood, dining";
+    metaKeywords.content = "Port San Antonio, beach resort, dining, seafood, Mediterranean cuisine, fine dining";
     document.head.appendChild(metaKeywords);
 
     // Add structured data (JSON-LD)
@@ -16,17 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
     script.text = JSON.stringify({
         "@context": "http://schema.org",
         "@type": "Restaurant",
-        "name": "Abou Philippe Restaurant",
+        "name": "Port San Antonio",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Port Antonio Building, Sea Road",
+            "streetAddress": "123 Sea Road",
             "addressLocality": "Mastita, Jbeil",
             "addressRegion": "Mount Lebanon",
             "postalCode": "00961",
             "addressCountry": "LB"
         },
         "telephone": "+96109796226",
-        "url": "http://www.abouphilippe.com",
+        "url": "http://www.portsanantonio.com",
         "servesCuisine": "Seafood, Mediterranean"
     });
     document.head.appendChild(script);
