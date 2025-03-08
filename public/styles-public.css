@@ -29,6 +29,10 @@
   color: #fff;
   text-decoration: none;
   font-size: 1.1rem;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Menu Toggle Button: always visible */
@@ -661,6 +665,38 @@ nav ul li a {
 nav ul li button,
 #darkModeToggle,
 #languageSwitcher {
+/* Universal Sort Overlay */
+.universal-sort-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+}
+.universal-sort-overlay.hidden {
+  display: none;
+}
+
+/* Navigation Modifications */
+#login {
+  display: none;
+}
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+nav ul li a {
+  font-size: 1.1rem;
+  padding: 0.4rem 0.8rem;
+}
+nav ul li button,
+#darkModeToggle,
+#languageSwitcher {
   font-size: 1.1rem;
   padding: 0.4rem 0.8rem;
 }
@@ -700,4 +736,40 @@ nav ul li button,
 }
 .nav-toggle:hover {
   background: rgba(0, 0, 0, 0.7);
+}
+
+/* Testimonial Form */
+#testimonialFormContainer.hidden {
+  display: none;
+}
+#testimonialFormContainer {
+  animation: fadeIn 1s ease-in-out;
+}
+#testimonialForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#testimonialForm label {
+  font-size: 1rem;
+  color: #333;
+}
+#testimonialForm input,
+#testimonialForm textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+#testimonialForm button {
+  padding: 10px;
+  background: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#testimonialForm button:hover {
+  background: #005f8e;
 }
