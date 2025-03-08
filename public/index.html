@@ -28,6 +28,7 @@
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
+
     // Dummy ctaFunction that scrolls to the CTA section
     function ctaFunction() {
       scrollToSection('cta');
@@ -83,7 +84,6 @@
     </ul>
   </div>
   
-
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
@@ -224,14 +224,17 @@
     <div id="testimonials-container">
       <!-- External testimonials loaded here -->
     </div>
-    <h3>Leave a Testimonial</h3>
-    <form id="testimonialForm">
-      <label for="testimonialName">Name:</label>
-      <input type="text" id="testimonialName" required>
-      <label for="testimonialMessage">Your Testimonial:</label>
-      <textarea id="testimonialMessage" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
+    <button id="leaveTestimonialBtn" onclick="toggleTestimonialForm()">Leave a Testimonial</button>
+    <div id="testimonialFormContainer" class="hidden">
+      <h3>Leave a Testimonial</h3>
+      <form id="testimonialForm">
+        <label for="testimonialName">Name:</label>
+        <input type="text" id="testimonialName" required>
+        <label for="testimonialMessage">Your Testimonial:</label>
+        <textarea id="testimonialMessage" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   </section>
 
   <!-- Call to Action (CTA) Section -->
@@ -325,6 +328,11 @@
         }
       });
     });
+
+    function toggleTestimonialForm() {
+      const formContainer = document.getElementById("testimonialFormContainer");
+      formContainer.classList.toggle("hidden");
+    }
   </script>
 
 </body>
