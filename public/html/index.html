@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link rel="stylesheet" href="../css/styles-admin.css">
   <title>Port San Antonio - Menu</title>
 
   <!-- Stylesheets -->
@@ -96,7 +99,15 @@
       fetch("footer.html").then(response => response.text()).then(data => document.getElementById("footer-include").innerHTML = data);
     });
   </script>
+    <div class="admin-header">
+        <h1 data-i18n="adminDashboard">Admin Dashboard</h1>
+        <button onclick="netlifyIdentity.logout()" data-i18n="logout">Logout</button>
+    </div>
+    <div id="cms"></div>
+    <div id="error-message" class="hidden"></div>
 
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="../js/script-admin.js"></script>
 </body>
 
 </html>
