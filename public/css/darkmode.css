@@ -1,0 +1,74 @@
+/* Dark Mode */
+.dark-mode {
+  background-color: #121212;
+  color: #f8f9fa;
+  transition: background 0.3s, color 0.3s;
+}
+.dark-mode header {
+  background: rgba(30, 30, 30, 0.9);
+}
+.dark-mode nav {
+  background-color: #222;
+}
+.dark-mode nav ul li a {
+  color: #f8f9fa;
+}
+.dark-mode nav ul li a:hover {
+  color: #00a8e8;
+}
+.dark-mode .hero {
+  background: url('images/beach-night.jpg') center/cover no-repeat;
+}
+.dark-mode .hero::before {
+  background: rgba(0, 0, 0, 0.7);
+}
+.dark-mode .menu-container {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+}
+.dark-mode .menu-category {
+  background: #333;
+}
+.dark-mode .menu-category h3 {
+  color: #ffffff;
+}
+.dark-mode .menu-item {
+  background: #444;
+  color: white;
+}
+.dark-mode .menu-item span {
+  color: #ffd700;
+}
+.dark-mode .menu-item:hover {
+  background: #555;
+}
+.dark-mode .sort-menu {
+  background: #333;
+  color: #fff;
+}
+.dark-mode .sort-menu button {
+  background: #555;
+  color: #fff;
+}
+.dark-mode .sort-menu button:hover {
+  background: #777;
+}
+.dark-mode .popup-content {
+  background: #333;
+  color: #fff;
+}
+.dark-mode .popup-content p,
+.dark-mode .popup-content h2 {
+  color: #fff;
+}
+.dark-mode .popup-content span {
+  color: #ffd700;
+}
+.dark-mode #contact {
+  background: #222;
+  border-top: 2px solid #444;
+}
+.dark-mode .contact-info p {
+  color: #ddd;
+}
