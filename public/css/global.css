@@ -1,0 +1,17 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;600&display=swap');
+
+/* Light Mode (Default) */
+body {
+  background-color: #dceeff;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* General styles, typography, colors, and resets */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
