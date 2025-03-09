@@ -7,8 +7,13 @@
   <title>Port San Antonio - Menu</title>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles-public.css" />
-  <link rel="stylesheet" href="public_testimonials.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/header.css" />
+  <link rel="stylesheet" href="../css/menu.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/dark-mode.css" />
+  <link rel="stylesheet" href="../css/public_cta.css" />
+  <link rel="stylesheet" href="../css/public_testimonials.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
   <!-- External Scripts -->
@@ -17,11 +22,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/1.4.1/i18nextHttpBackend.min.js"></script>
 
   <!-- Local Scripts -->
-  <script src="script-public.js" defer></script>
-  <script src="public_cta.js" defer></script>
-  <script src="public_seo.js" defer></script>
-  <script src="public_social-media.js" defer></script>
-  <script src="sidebar.js" defer></script>
+  <script src="../js/script-public.js" defer></script>
+  <script src="../js/public_cta.js" defer></script>
+  <script src="../js/public_seo.js" defer></script>
+  <script src="../js/public_social-media.js" defer></script>
+  <script src="../js/sidebar.js" defer></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <!-- Helper script for smooth scrolling -->
@@ -46,45 +51,8 @@
     <div class="wave wave3"></div>
   </div>
 
-  <!-- Header and Navigation -->
-  <header>
-    <nav>
-      <div class="logo" data-i18n="logo">Port San Antonio</div>
-      <ul>
-        <li><a href="#home" onclick="scrollToSection('home')" data-i18n="home">Home</a></li>
-        <li><a href="#menu" onclick="scrollToSection('menu')" data-i18n="menu">Menu</a></li>
-        <li><a href="#testimonials" onclick="scrollToSection('testimonials')" data-i18n="testimonials">Testimonials</a></li>
-        <li><a href="#cta" onclick="scrollToSection('cta')" data-i18n="cta">Call to Action</a></li>
-        <li><a href="#contact" onclick="scrollToSection('contact')" data-i18n="contact">Contact</a></li>
-        <li><a href="#admin" onclick="scrollToSection('admin')" data-i18n="admin">Admin</a></li>
-        <li><button id="darkModeToggle">🌙 <span data-i18n="darkMode">Dark Mode</span></button></li>
-        <li>
-          <select id="languageSwitcher">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="ar">العربية</option>
-          </select>
-        </li>
-        <li><button id="login" data-i18n="login">Login</button></li>
-        <li><button id="logout" data-i18n="logout" style="display:none;">Logout</button></li>
-      </ul>
-      <!-- Menu Toggle Button (Three-Striped Icon) -->
-      <button class="menu-toggle">&#9776;</button>
-      <!--  Navigation Arrow Toggle Button -->
-      <button id="navToggle" class="nav-toggle">&#x25B2;</button>
-    </nav>
-  </header>
-
-  <!-- Sidebar (Only one instance) -->
-  <div class="sidebar-menu">
-    <ul>
-      <li><a href="#"><i class="fas fa-utensils"></i> Reserve a Table</a></li>
-      <li><a href="#"><i class="fab fa-facebook-f"></i> Share on Facebook</a></li>
-      <li><a href="#"><i class="fab fa-twitter"></i> Share on Twitter</a></li>
-      <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-      <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-    </ul>
-  </div>
+  <!-- Include Header -->
+  <div id="header-include"></div>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
@@ -95,149 +63,11 @@
     </div>
   </section>
 
-  <!-- Menu Section -->
-  <section id="menu">
-    <h2 data-i18n="ourMenu">Our Menu</h2>
-    <div class="filter-container">
-      <label for="filter" data-i18n="filter">Filter:</label>
-      <select id="filter">
-        <option value="all" data-i18n="all">All</option>
-        <option value="vegetarian" data-i18n="vegetarian">Vegetarian</option>
-        <option value="popular" data-i18n="popular">Popular</option>
-        <option value="gluten-free" data-i18n="glutenFree">Gluten-Free</option>
-      </select>
-      <button class="universal-sort-btn"><i class="fas fa-cogs"></i></button>
-    </div>
-    <div class="menu-container">
-      <!-- Sandwiches Category -->
-      <div class="menu-category">
-        <h3>
-          <span data-i18n="sandwiches">Sandwiches</span>
-          <button class="filter-btn"><i class="fas fa-cog"></i></button>
-        </h3>
-        <div class="sort-overlay hidden">
-          <div class="sort-menu">
-            <h4 data-i18n="sortSandwiches">Sort Sandwiches</h4>
-            <button class="sort-btn" data-category="sandwiches" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
-            <button class="sort-btn" data-category="sandwiches" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
-            <button class="close-sort" data-i18n="close">Close</button>
-          </div>
-        </div>
-        <div class="menu-items sandwiches">
-          <!-- Dynamic content will be loaded here -->
-        </div>
-      </div>
-      <!-- Salads Category -->
-      <div class="menu-category">
-        <h3>
-          <span data-i18n="salads">Salads</span>
-          <button class="filter-btn"><i class="fas fa-cog"></i></button>
-        </h3>
-        <div class="sort-overlay hidden">
-          <div class="sort-menu">
-            <h4 data-i18n="sortSalads">Sort Salads</h4>
-            <button class="sort-btn" data-category="salads" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
-            <button class="sort-btn" data-category="salads" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
-            <button class="close-sort" data-i18n="close">Close</button>
-          </div>
-        </div>
-        <div class="menu-items salads">
-          <!-- Dynamic content will be loaded here -->
-        </div>
-      </div>
-      <!-- Main Dishes Category -->
-      <div class="menu-category">
-        <h3>
-          <span data-i18n="mainDishes">Main Dishes</span>
-          <button class="filter-btn"><i class="fas fa-cog"></i></button>
-        </h3>
-        <div class="sort-overlay hidden">
-          <div class="sort-menu">
-            <h4 data-i18n="sortMainDishes">Sort Main Dishes</h4>
-            <button class="sort-btn" data-category="main-dishes" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
-            <button class="sort-btn" data-category="main-dishes" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
-            <button class="close-sort" data-i18n="close">Close</button>
-          </div>
-        </div>
-        <div class="menu-items main-dishes">
-          <!-- Dynamic content will be loaded here -->
-        </div>
-      </div>
-      <!-- Drinks Category -->
-      <div class="menu-category">
-        <h3>
-          <span data-i18n="drinks">Drinks</span>
-          <button class="filter-btn"><i class="fas fa-cog"></i></button>
-        </h3>
-        <div class="sort-overlay hidden">
-          <div class="sort-menu">
-            <h4 data-i18n="sortDrinks">Sort Drinks</h4>
-            <button class="sort-btn" data-category="drinks" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
-            <button class="sort-btn" data-category="drinks" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
-            <button class="close-sort" data-i18n="close">Close</button>
-          </div>
-        </div>
-        <div class="menu-items drinks">
-          <!-- Dynamic content will be loaded here -->
-        </div>
-      </div>
-      <!-- Platters Category -->
-      <div class="menu-category">
-        <h3>
-          <span data-i18n="platters">Platters</span>
-          <button class="filter-btn"><i class="fas fa-cog"></i></button>
-        </h3>
-        <div class="sort-overlay hidden">
-          <div class="sort-menu">
-            <h4 data-i18n="sortPlatters">Sort Platters</h4>
-            <button class="sort-btn" data-category="platters" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
-            <button class="sort-btn" data-category="platters" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
-            <button class="close-sort" data-i18n="close">Close</button>
-          </div>
-        </div>
-        <div class="menu-items platters">
-          <!-- Dynamic content will be loaded here -->
-        </div>
-      </div>
-      <!-- Alcoholic Drinks & Sides Category -->
-      <div class="menu-category">
-        <h3>
-          <span data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</span>
-          <button class="filter-btn"><i class="fas fa-cog"></i></button>
-        </h3>
-        <div class="sort-overlay hidden">
-          <div class="sort-menu">
-            <h4 data-i18n="sortAlcoholic">Sort Alcoholic Drinks & Sides</h4>
-            <button class="sort-btn" data-category="alcoholic" data-sort="price" data-i18n="sortByPrice">Sort by Price</button>
-            <button class="sort-btn" data-category="alcoholic" data-sort="name" data-i18n="sortByName">Sort Alphabetically</button>
-            <button class="close-sort" data-i18n="close">Close</button>
-          </div>
-        </div>
-        <div class="menu-items alcoholic">
-          <!-- Dynamic content will be loaded here -->
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Include Menu -->
+  <div id="menu-include"></div>
 
-  <!-- Testimonials Section -->
-  <section id="testimonials">
-    <h2 data-i18n="testimonials">Testimonials</h2>
-    <div id="testimonials-container">
-      <!-- External testimonials loaded here -->
-    </div>
-    <button id="leaveTestimonialBtn" onclick="toggleTestimonialForm()">Leave a Testimonial</button>
-    <div id="testimonialFormContainer" class="hidden">
-      <h3>Leave a Testimonial</h3>
-      <form id="testimonialForm">
-        <label for="testimonialName">Name:</label>
-        <input type="text" id="testimonialName" required>
-        <label for="testimonialMessage">Your Testimonial:</label>
-        <textarea id="testimonialMessage" required></textarea>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  </section>
+  <!-- Include Testimonials -->
+  <div id="testimonials-include"></div>
 
   <!-- Call to Action (CTA) Section -->
   <section id="cta">
@@ -246,94 +76,24 @@
     <button onclick="ctaFunction()" data-i18n="subscribeButton">Subscribe</button>
   </section>
 
-  <!-- Admin Dashboard Section -->
-  <section id="admin">
-    <h2 data-i18n="adminDashboard">Admin Dashboard</h2>
-    <div class="admin-container">
-      <form id="adminForm">
-        <label for="name" data-i18n="itemName">Item Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="price" data-i18n="price">Price:</label>
-        <input type="number" id="price" name="price" required>
-        <label for="category" data-i18n="category">Category:</label>
-        <select id="category" name="category" required>
-          <option value="sandwiches" data-i18n="sandwiches">Sandwiches</option>
-          <option value="salads" data-i18n="salads">Salads</option>
-          <option value="main-dishes" data-i18n="mainDishes">Main Dishes</option>
-          <option value="drinks" data-i18n="drinks">Drinks</option>
-          <option value="platters" data-i18n="platters">Platters</option>
-          <option value="alcoholic" data-i18n="alcoholicDrinksSides">Alcoholic Drinks & Sides</option>
-        </select>
-        <label for="image" data-i18n="imageUrl">Image URL:</label>
-        <input type="text" id="image" name="image" required>
-        <label for="ingredients" data-i18n="ingredients">Ingredients:</label>
-        <textarea id="ingredients" name="ingredients" required></textarea>
-        <label for="health" data-i18n="healthInfo">Health Info:</label>
-        <textarea id="health" name="health" required></textarea>
-        <button type="submit" data-i18n="addItem">Add Item</button>
-      </form>
-    </div>
-  </section>
+  <!-- Include Contact -->
+  <div id="contact-include"></div>
 
-  <!-- Food Item Popup -->
-  <div id="foodPopup" class="popup hidden">
-    <div class="popup-content">
-      <span class="close-popup">&times;</span>
-      <button id="popupPrev">&#10094;</button>
-      <button id="popupNext">&#10095;</button>
-      <img id="popupImage" src="images/placeholder.jpg" alt="Food Image">
-      <h2 id="popupName">Food Name</h2>
-      <p><strong data-i18n="priceLabel">Price:</strong> <span id="popupPrice">$0</span></p>
-      <p><strong data-i18n="ingredientsLabel">Ingredients:</strong> <span id="popupIngredients">Placeholder Ingredients</span></p>
-      <p><strong data-i18n="healthValuesLabel">Health Values:</strong> <span id="popupHealth">Placeholder Health Values</span></p>
-    </div>
-  </div>
+  <!-- Include Footer -->
+  <div id="footer-include"></div>
 
   <!-- Scroll to Top Button -->
   <button id="scrollToTopBtn" class="scroll-to-top-btn">⬆️</button>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2 data-i18n="contactUs">Contact Us</h2>
-    <p data-i18n="questions">Have questions? Reach out to us!</p>
-    <div class="contact-info">
-      <p data-i18n="email">Email: contact@portsanantonio.com</p>
-      <p data-i18n="phone">Phone: +39 123 456 7890</p>
-      <p data-i18n="location">Location: Ancona, Italy</p>
-    </div>
-  </section>
-
   <!-- Load Testimonials Content and Handle Testimonial Form -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Load external testimonials
-      fetch("public_testimonials.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("testimonials-container").innerHTML = data);
-
-      // Testimonial form handling (no backend)
-      const testimonialForm = document.getElementById("testimonialForm");
-      const testimonialsContainer = document.getElementById("testimonials-container");
-      testimonialForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const name = document.getElementById("testimonialName").value.trim();
-        const message = document.getElementById("testimonialMessage").value.trim();
-        if (name && message) {
-          const newTestimonial = document.createElement("div");
-          newTestimonial.classList.add("testimonial");
-          newTestimonial.innerHTML = `
-            <p>"${message}"</p>
-            <span>- ${name}</span>
-          `;
-          testimonialsContainer.appendChild(newTestimonial);
-          testimonialForm.reset();
-        }
-      });
-
-      function toggleTestimonialForm() {
-        const formContainer = document.getElementById("testimonialFormContainer");
-        formContainer.classList.toggle("hidden");
-      }
+      // Load external HTML sections
+      fetch("header.html").then(response => response.text()).then(data => document.getElementById("header-include").innerHTML = data);
+      fetch("menu.html").then(response => response.text()).then(data => document.getElementById("menu-include").innerHTML = data);
+      fetch("testimonials.html").then(response => response.text()).then(data => document.getElementById("testimonials-include").innerHTML = data);
+      fetch("contact.html").then(response => response.text()).then(data => document.getElementById("contact-include").innerHTML = data);
+      fetch("footer.html").then(response => response.text()).then(data => document.getElementById("footer-include").innerHTML = data);
     });
   </script>
 
