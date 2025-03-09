@@ -85,10 +85,9 @@
   <!-- Scroll to Top Button -->
   <button id="scrollToTopBtn" class="scroll-to-top-btn">⬆️</button>
 
-  <!-- Load Testimonials Content and Handle Testimonial Form -->
+  <!-- Load External HTML Sections -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Load external HTML sections
       fetch("header.html").then(response => response.text()).then(data => document.getElementById("header-include").innerHTML = data);
       fetch("menu.html").then(response => response.text()).then(data => document.getElementById("menu-include").innerHTML = data);
       fetch("testimonials.html").then(response => response.text()).then(data => document.getElementById("testimonials-include").innerHTML = data);
