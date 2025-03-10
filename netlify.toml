@@ -1,5 +1,5 @@
 [build]
-  publish = "public/html/index.html"
+  publish = "public/html"
 
 [[redirects]]
   from = "/admin"
